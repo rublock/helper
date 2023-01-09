@@ -55,3 +55,5 @@
 * `git push --set-upstream origin [local_branch_name]` - пуш если нет такой ветки на удаленном репозитории
 * `git reset --hard origin/[branch_name]` – вернуться в состояние удаленной ветки 
 * `git log --oneline` - вывести все коммиты
+
+test

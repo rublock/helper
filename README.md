@@ -56,4 +56,15 @@
 * `git reset --hard origin/[branch_name]` – вернуться в состояние удаленной ветки 
 * `git log --oneline` - вывести все коммиты
 
-test
+﻿# Docker
+
+* `sudo docker images` - показать все образы
+* `sudo docker ps -a` - показать все запущенные образы
+* `sudo docker pull [imagename:version]` - скачать образ
+* `sudo docker rmi [imagename:version]` - удалить образ
+* `sudo docker run [imagename:version]` - запустить образ
+* `sudo docker run -it [imagename:version]` - запустить образ + открыть терминал
+* `sudo docker stop [NAME]` - остановить образ
+* `sudo docker rm [NAME]` - удалить существующий образ образ, но не удалять сам файл образа
+* `sudo docker start [NAME]` - запустить существующий образ
+* `sudo docker exec -it [NAME] bash` - зайти в контейнер используя bash

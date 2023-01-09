@@ -56,8 +56,7 @@
 * `git reset --hard origin/[branch_name]` – вернуться в состояние удаленной ветки 
 * `git log --oneline` - вывести все коммиты
 
-﻿# Docker
-
+# Docker
 * `sudo docker images` - показать все образы
 * `sudo docker ps -a` - показать все запущенные образы
 * `sudo docker pull [imagename:version]` - скачать образ

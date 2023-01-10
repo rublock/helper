@@ -35,6 +35,7 @@
 * `python manage.py changepassword [nick name]` - изменить пароль супер пользователя
 * `python manage.py runserver`- запуск сервера
 * `python manage.py collectstatic` - сбор статики
+* `python manage.py shell` - для выполнения запросов и тестирования фрагментов кода
 
 # RAR linux
 * `unrar x [file_name]` - распаковать архив в одноименную папку

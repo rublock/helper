@@ -31,7 +31,7 @@
 
 * `python manage.py makemigrations` - создать файлы миграций
 * `python manage.py migrate` - миграции базы данных
-* `python manage.py migrate [last migration]` - откат миграции
+* `python manage.py migrate mainapp [last migration]` - откат миграции
 * `python manage.py createsuperuser` - создать супер пользователя
 * `python manage.py changepassword [nick name]` - изменить пароль супер пользователя
 * `python manage.py runserver`- запуск сервера

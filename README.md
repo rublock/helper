@@ -32,3 +32,42 @@ human_1 = Human(100, 10, 'Воин', 15)
 print(human_1.get_unit_info()) # использование метода базового класса 
                                # Здоровье: 100; Урон: 10; Тип: Воин; Броня: 15;
 ```
+## ООП Перегрузка операторов
+```
+class Unit():  # базовый класс
+
+    def __init__(self, health, name):  # конструктор базового класса c атрибутами
+        self.health = health
+        self.name = name
+
+    def __str__(self): # переопределение метода str
+      return f'Имя юнита {self.name} здоровье {self.health}'
+
+    def __add__(self, other): # переопределение метода сложения
+        health_all = self.health + other.health
+        return Unit(health_all, self.name)
+
+unit_1 = Unit(100, 'Gordon')
+unit_2 = Unit(100, 'Alyx')
+print(unit_1) # Имя юнита Gordon здоровье 100
+print(unit_1 + unit_2) # Имя юнита Gordon здоровье 200 # можно складывать больше экземпляров
+```
+## Декораторы
+```
+def decorator(decorator_arg):
+    def inner_decorator(func):
+        def wrapper(*args, **kwargs): # принимает любое кол-во любых параметров или ничего
+            func(*args, **kwargs)
+            print('Данные из декоратора')
+            print(decorator_arg) # принимает аргумент из декоаратора @decorator('Аргумент декоратора')
+        return wrapper
+    return inner_decorator
+
+@decorator('Аргумент декоратора') #декорирование функции, добавление нового функционала с аргументом
+def foo(arg):
+    print(f'{arg}')
+
+foo('Агрументы функции') # Агрументы функции
+                         # Данные из декоратора
+                         # Аргумент декоратора
+```

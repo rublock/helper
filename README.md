@@ -26,7 +26,8 @@ class Human(Unit): # класс наследник
         self.armor = armor
     
     def get_unit_info(self): # переопределение метода базового класса
-        return f'Здоровье: {self.health}; Урон: {self.damage}; Тип: {self.type}; Броня: {self.armor};'
+        return f'Здоровье: {self.health}; Урон: {self.damage}; \
+                 Тип: {self.type}; Броня: {self.armor};'
 
 human_1 = Human(100, 10, 'Воин', 15)
 print(human_1.get_unit_info()) # использование метода базового класса 
@@ -59,11 +60,13 @@ def decorator(decorator_arg):
         def wrapper(*args, **kwargs): # принимает любое кол-во любых параметров или ничего
             func(*args, **kwargs)
             print('Данные из декоратора')
-            print(decorator_arg) # принимает аргумент из декоаратора @decorator('Аргумент декоратора')
+            print(decorator_arg) # принимает аргумент из 
+                                 # декоаратора @decorator('Аргумент декоратора')
         return wrapper
     return inner_decorator
 
-@decorator('Аргумент декоратора') #декорирование функции, добавление нового функционала с аргументом
+@decorator('Аргумент декоратора') #декорирование функции, добавление нового 
+                                  #функционала с аргументом
 def foo(arg):
     print(f'{arg}')
 

@@ -18,6 +18,7 @@
 * `pip install --no-cache-dir 'Django<[version]'` - установка Django
 * `pip install -r requirements.txt` - устновка зависимостей
 * `pip freeze > requirements.txt` - экспорт зависимостей
+* `python -m pip uninstall [name]` - удаление зависимости
 * `django-admin startproject config .` - установка файлов приложения
 * `python manage.py startapp mainapp` - создание приложения
 * `run and debug` => `create a launch.json` => `Django` => `args: [ "runserver", "0.0.0.0:8000" ]` - настройка отладчика

@@ -9,6 +9,7 @@
 * `virtualenv venv ` - создание окружения
 * `source venv/bin/activate` - запуск виртуального окружения
 * `virtualenv -p /usr/bin/python3.10 venv` - установка питона в окружение
+* `deactivate` - отключить виртуальное окружение
 
 # venv windows
 * `python -m venv venv` - создание окружения

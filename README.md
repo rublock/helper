@@ -51,6 +51,8 @@
 * `ssh-keygen -t ed25519 -C "your_email@example.com"”` – сгенерировать ssh ключ 
 * `cd .ssh/` - переходим в каталог с ssh ключами
 * `cat ./id_ed25519.pub` – копируем ключ и вставляем на GitHub
+* `git config --global user.email "hypermail@yandex.ru"` - добавляем почту
+* `git config --global user.name "rublock"` - добавляем пользователя
 * `git clone [git link]` – скопировать репозиторий с Git через ssh
 * `git checkout -b [yourbranchname]` - создать ветку и переключиться
 * `git stash -u` – удаляет все локальные изменения

@@ -15,6 +15,7 @@ ctrl + `
 `
 
 в правом нижнем углу, выбрать интерпретатор проекта из виртуального окружения 
+
 ```
 /venv/bin/python
 ```
@@ -24,18 +25,22 @@ ctrl + `
 ```
 sudo pip install virtualenv
 ```
+
 создание окружения
 ```
 virtualenv venv
 ```
+
 запуск виртуального окружения
 ```
 . venv/bin/activate
 ```
+
 установка питона в окружение
 ```
 virtualenv -p /usr/bin/python3.10 venv
 ```
+    
 отключить виртуальное окружение
 ```
 deactivate

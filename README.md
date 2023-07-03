@@ -78,9 +78,9 @@ git checkout -b [yourbranchname]
 ```
 git stash -u
 ```
-добавить все файлы и закомитить
+добавить все файлы и закомитить и запушить
 ```
-git add . && git commit -am [commit_text]
+git add . && git commit -am [commit_text] && git push
 ```
 создать такую же ветку на удаленном репозитории и отправить
 ```
@@ -257,3 +257,5 @@ sudo docker start [NAME]
 ```
 sudo docker exec -it [NAME] bash
 ```
+
+test

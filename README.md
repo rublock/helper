@@ -5,7 +5,10 @@
 * в правом нижнем углу, выбрать интерпретатор проекта из виртуального окружения `/venv/bin/python`
 
 # venv linux
-* ```sudo pip install virtualenv``` - установка программы
+```
+sudo pip install virtualenv
+``` 
+установка программы
 * `virtualenv venv ` - создание окружения
 * `source venv/bin/activate` - запуск виртуального окружения
 * `virtualenv -p /usr/bin/python3.10 venv` - установка питона в окружение

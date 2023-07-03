@@ -218,22 +218,42 @@ rar [file_name] [dir_name]
 
 # Docker
 показать все образы
-```sudo docker images```
+```
+sudo docker images
+```
 показать все запущенные образы
-```sudo docker ps -a```
+```
+sudo docker ps -a
+```
 скачать образ
-```sudo docker pull [imagename:version]```
+```
+sudo docker pull [imagename:version]
+```
 удалить образ
-```sudo docker rmi [imagename:version]```
+```
+sudo docker rmi [imagename:version]
+```
 запустить образ
-```sudo docker run [imagename:version]```
+```
+sudo docker run [imagename:version]
+```
 запустить образ + открыть терминал
-```sudo docker run -it [imagename:version]```
+```
+sudo docker run -it [imagename:version]
+```
 остановить образ
-```sudo docker stop [NAME]```
+```
+sudo docker stop [NAME]
+```
 удалить существующий образ образ, но не удалять сам файл образа
-```sudo docker rm [NAME]```
+```
+sudo docker rm [NAME]
+```
 запустить существующий образ
-```sudo docker start [NAME]```
+```
+sudo docker start [NAME]
+```
 зайти в контейнер используя bash
-```sudo docker exec -it [NAME] bash```
+```
+sudo docker exec -it [NAME] bash
+```

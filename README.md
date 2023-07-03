@@ -148,8 +148,12 @@ urls.py
 
 пример загрузки статичного файла в корневом urls.py
 ```
-from mainapp.apps import MainappConfig app_name = MainappConfig.nameв urls.py в mainapp
+from mainapp.apps import MainappConfig 
 
+app_name = MainappConfig.nameв urls.py
+```
+в mainapp
+```
 path('', include('mainapp.urls')),
 path("", views.MainPageView.as_view(), name="home"),
 ```

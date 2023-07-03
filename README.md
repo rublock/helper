@@ -212,18 +212,28 @@ unrar l [file_name]
 заархивировать папку 
 ```
 rar [file_name] [dir_name]
-```заархивировать папку 
+```
 
 
 
 # Docker
-```sudo docker images```показать все образы
-```sudo docker ps -a```показать все запущенные образы
-```sudo docker pull [imagename:version]```скачать образ
-```sudo docker rmi [imagename:version]```удалить образ
-```sudo docker run [imagename:version]```запустить образ
-```sudo docker run -it [imagename:version]```запустить образ + открыть терминал
-```sudo docker stop [NAME]```остановить образ
-```sudo docker rm [NAME]```удалить существующий образ образ, но не удалять сам файл образа
-```sudo docker start [NAME]```запустить существующий образ
-```sudo docker exec -it [NAME] bash```зайти в контейнер используя bash
+показать все образы
+```sudo docker images```
+показать все запущенные образы
+```sudo docker ps -a```
+скачать образ
+```sudo docker pull [imagename:version]```
+удалить образ
+```sudo docker rmi [imagename:version]```
+запустить образ
+```sudo docker run [imagename:version]```
+запустить образ + открыть терминал
+```sudo docker run -it [imagename:version]```
+остановить образ
+```sudo docker stop [NAME]```
+удалить существующий образ образ, но не удалять сам файл образа
+```sudo docker rm [NAME]```
+запустить существующий образ
+```sudo docker start [NAME]```
+зайти в контейнер используя bash
+```sudo docker exec -it [NAME] bash```

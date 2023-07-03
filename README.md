@@ -167,20 +167,52 @@ class MainPageView(TemplateView):
 STATICFILES_DIRS = [BASE_DIR / 'static',] , 
 src="/static/img/logo.png"
 ``` 
-
-```python manage.py makemigrations```создать файлы миграций
-```python manage.py migrate```миграции базы данных
-```python manage.py migrate mainapp [last migration]```откат миграции
-```python manage.py createsuperuser```создать супер пользователя
-```python manage.py changepassword [nick name]```изменить пароль супер пользователя
-```python manage.py runserver```- запуск сервера
-```python manage.py collectstatic```сбор статики
-```python manage.py shell```для выполнения запросов и тестирования фрагментов кода
+создать файлы миграций
+```
+python manage.py makemigrations
+```
+миграции базы данных
+```
+python manage.py migrate
+```
+откат миграции
+```
+python manage.py migrate mainapp [last migration]
+```
+создать супер пользователя
+```
+python manage.py createsuperuser
+```
+изменить пароль супер пользователя
+```
+python manage.py changepassword [nick name]
+```
+запуск сервера
+```
+python manage.py runserver
+```
+сбор статики
+```
+python manage.py collectstatic
+```
+для выполнения запросов и тестирования фрагментов кода
+```
+python manage.py shell
+```
 
 # RAR linux
-```unrar x [file_name]```распаковать архив в одноименную папку
-```unrar l [file_name]```просмотреть содержимое архива
-```rar [file_name] [dir_name]```заархивировать папку 
+распаковать архив в одноименную папку
+```
+unrar x [file_name]
+```
+просмотреть содержимое архива
+```
+unrar l [file_name]
+```
+заархивировать папку 
+```
+rar [file_name] [dir_name]
+```заархивировать папку 
 
 
 

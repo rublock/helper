@@ -145,6 +145,7 @@ INSTALLED APPS в settings.py
 `
 urls.py
 `
+
 пример загрузки статичного файла
 ```
 from mainapp.apps import MainappConfig app_name = MainappConfig.nameв urls.py в mainapp

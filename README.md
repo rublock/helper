@@ -146,13 +146,13 @@ INSTALLED APPS в settings.py
 urls.py
 `
 
-пример загрузки статичного файла в корневом urls.py
+пример загрузки статичного файла в `urls.py` из папки mainapp
 ```
 from mainapp.apps import MainappConfig 
 
 app_name = MainappConfig.nameв urls.py
 ```
-в mainapp
+в `urls.py` из папки mainapp
 ```
 path('', include('mainapp.urls')),
 path("", views.MainPageView.as_view(), name="home"),
@@ -162,7 +162,7 @@ path("", views.MainPageView.as_view(), name="home"),
 class MainPageView(TemplateView): 
     template_name = "mainapp/base.html"
 ```
-создаем папку static в корне и прописываем в файле settings.py
+создаем папку static в корне и прописываем в файле `settings.py`
 ```
 STATICFILES_DIRS = [BASE_DIR / 'static',] , 
 src="/static/img/logo.png"

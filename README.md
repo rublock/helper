@@ -41,6 +41,72 @@ virtualenv -p /usr/bin/python3.10 venv
 deactivate
 ```
 
+# Git
+проверить есть ли ssh ключи на компьютере
+```
+cd ~/.ssh | ls -lah
+```
+сгенерировать ssh ключ
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"”
+```
+переходим в каталог с ssh ключами
+```
+cd .ssh/
+```
+копируем ключ и вставляем на GitHub
+```
+cat ./id_ed25519.pub
+```
+добавляем почту
+```
+git config --global user.email "hypermail@yandex.ru"
+```
+добавляем пользователя
+```
+git config --global user.name "rublock"
+```
+скопировать репозиторий с Git через ssh
+```
+git clone [git link]
+```
+создать ветку и переключиться
+```
+git checkout -b [yourbranchname]
+```
+удаляет все локальные изменения
+```
+git stash -u
+```
+добавить все файлы и закомитить
+```
+git add . && git commit -am [commit_text]
+```
+создать такую же ветку на удаленном репозитории и отправить
+```
+git push -u origin master
+```
+удалить локальную ветку
+```
+git branch -d [local_branch_name]
+```
+удалить последний коммит в локальной ветке
+```
+git reset HEAD~1
+```
+пуш если нет такой ветки на удаленном репозитории
+```
+git push --set-upstream origin [local_branch_name]
+```
+вернуться в состояние удаленной ветки
+```
+git reset --hard origin/[branch_name]
+``` 
+вывести все коммиты
+```
+git log --oneline
+```
+
 
 # Django
 ```pip install --no-cache-dir 'Django<[version]'```установка Django
@@ -73,23 +139,7 @@ deactivate
 ```unrar l [file_name]```просмотреть содержимое архива
 ```rar [file_name] [dir_name]```заархивировать папку 
 
-# Git
-```cd ~/.ssh | ls -lah``` – проверить есть ли ssh ключи на компьютере
-```ssh-keygen -t ed25519 -C "your_email@example.com"”``` – сгенерировать ssh ключ 
-```cd .ssh/```переходим в каталог с ssh ключами
-```cat ./id_ed25519.pub``` – копируем ключ и вставляем на GitHub
-```git config --global user.email "hypermail@yandex.ru"```добавляем почту
-```git config --global user.name "rublock"```добавляем пользователя
-```git clone [git link]``` – скопировать репозиторий с Git через ssh
-```git checkout -b [yourbranchname]```создать ветку и переключиться
-```git stash -u``` – удаляет все локальные изменения
-```git add . && git commit -am [commit_text]``` – добавить все файлы и закомитить
-```git push -u origin master``` – создать такую же ветку на уд. реп. и отправить
-```git branch -d [local_branch_name]``` – удалить локальную ветку
-```git reset HEAD~1``` – удалить последний коммит в локальной ветке
-```git push --set-upstream origin [local_branch_name]```пуш если нет такой ветки на удаленном репозитории
-```git reset --hard origin/[branch_name]``` – вернуться в состояние удаленной ветки 
-```git log --oneline```вывести все коммиты
+
 
 # Docker
 ```sudo docker images```показать все образы

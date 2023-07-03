@@ -30,7 +30,7 @@ virtualenv venv
 ```
 запуск виртуального окружения
 ```
-source venv/bin/activate
+. venv/bin/activate
 ```
 установка питона в окружение
 ```
@@ -109,21 +109,51 @@ git log --oneline
 
 
 # Django
-```pip install --no-cache-dir 'Django<[version]'```установка Django
-```pip install -r requirements.txt```устновка зависимостей
-```pip freeze > requirements.txt```экспорт зависимостей
-```python -m pip uninstall [name]```удаление зависимости
-```django-admin startproject config .```установка файлов приложения
-```python manage.py startapp mainapp```создание приложения
-```run and debug``` => ```create a launch.json``` => ```Django``` => ```args: [ "runserver", "0.0.0.0:8000" ]```настройка отладчика
-```INSTALLED APPS``` в ```settings.py```добавить созданое приложение ```mainapp```
-```urls.py``` – создаем в нашем приложении ```mainapp```
-```from mainapp.apps import MainappConfig app_name = MainappConfig.name```в ```urls.py``` в ```mainapp```
-```path('', include('mainapp.urls')),```в корневом ```urls.py```
-```path("", views.MainPageView.as_view(), name="home"),```в ```urls.py``` приложения
-```class MainPageView(TemplateView): template_name = "mainapp/base.html"```во ```views.py```
-```STATICFILES_DIRS = [BASE_DIR / 'static',]```в файле ```settings.py``` , создаем папку ```static``` в корне
-```src="/static/img/logo.png"```пример загрузки статичного файла 
+установка Django
+```
+pip install --no-cache-dir 'Django<[version]'
+```
+устновка зависимостей
+```
+pip install -r requirements.txt
+```
+экспорт зависимостей
+```
+pip freeze > requirements.txt
+```
+удаление зависимости
+```
+python -m pip uninstall [name]
+```
+установка файлов приложения
+```
+django-admin startproject config .
+```
+создание приложения
+```
+python manage.py startapp mainapp
+```
+настройка отладчика
+```
+run and debug => create a launch.json => Django => args: [ "runserver", "0.0.0.0:8000" ]
+```
+добавить созданое приложение mainapp
+```
+INSTALLED APPS в settings.py
+```
+создаем в нашем приложении mainapp
+`
+urls.py
+`
+пример загрузки статичного файла
+```
+from mainapp.apps import MainappConfig app_name = MainappConfig.nameв urls.py в mainapp
+path('', include('mainapp.urls')),в корневом urls.py
+path("", views.MainPageView.as_view(), name="home"),в urls.py приложения
+class MainPageView(TemplateView): template_name = "mainapp/base.html"во views.py
+STATICFILES_DIRS = [BASE_DIR / 'static',]в файле settings.py , создаем папку static в корне
+src="/static/img/logo.png"
+``` 
 
 ```python manage.py makemigrations```создать файлы миграций
 ```python manage.py migrate```миграции базы данных

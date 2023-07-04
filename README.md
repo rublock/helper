@@ -102,6 +102,11 @@ git add . && git commit -am [commit_text] && git push
 git push -u origin master
 ```
 
+просмотреть все вести
+```
+git branch -a
+```
+
 удалить локальную ветку
 ```
 git branch -d [local_branch_name]

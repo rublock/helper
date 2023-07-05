@@ -1,7 +1,3 @@
-﻿# this
-
-пример вызова this
-```javascript
 const data = 'text_data'
 
 const dictData = {
@@ -13,4 +9,3 @@ const dictData = {
 }
 
 dictData.consoleLogInfo();
-```

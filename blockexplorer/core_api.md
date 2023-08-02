@@ -18,7 +18,7 @@ bitcoind
 ```
 cd Git/electrs/ && ./target/release/electrs --log-filters INFO --db-dir ./db --electrum-rpc-addr="127.0.0.1:50001"
 ```
-ждем пока проиндексируются все транзакции
+ждем пока проиндексируются все транзакции chain updated
 
 запускаем btc-rpc-explorer
 ```

@@ -1,24 +1,3 @@
-﻿# this
-
-пример вызова this
-```javascript
-const data = 'text_data'
-
-const dictData = {
-    data: 'text_dictData',
-    consoleLogInfo: function() {
-        console.log(this.data) //text_dictData
-        console.log(data) //text_data
-    }
-}
-
-dictData.consoleLogInfo();
-```
-
-# Promise
-
-пример Promise
-```javascript
 //базовый промис
 const p = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -48,4 +27,3 @@ p.then(data => {
     return data //можно делать манипуляции с данными и возвращать их
 }).catch(err => console.log('Error', err)) //обработка ошибки если reject()
   .finally(() => console.log('Finally')) //окончание скрипта
-```

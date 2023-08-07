@@ -26,21 +26,21 @@ ssh-keygen
 ```
 ssh-copy-id [user name]@[ip address]
 ```
-
+установить менеджер пакетов
 ```
-
+sudo -H pip3 install --upgrade pip
 ```
-
+установить утилиту для виртуального окружения
 ```
-
+sudo -H pip3 install virtualenv
 ```
-
+в папке проекта создать виртуальное окружение
 ```
-
+virtualenv venv
 ```
-
+активировать виртуальное окружение
 ```
-
+. venv/bin/activate
 ```
 
 ```

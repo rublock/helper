@@ -14,13 +14,13 @@ usermod -aG sudo [user name]
 ```
 su - [user name]
 ```
-обновление сисетмы
+генерируем ssh ключ
 ```
-sudo apt update
+ssh-keygen
 ```
-установка пакетов
+копируем ssh на сервер
 ```
-sudo apt install gcc
+ssh-copy-id [user name]@[ip address]
 ```
 
 ```

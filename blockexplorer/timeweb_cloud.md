@@ -7,31 +7,38 @@ sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-con
 ```
 
 ```
-
+sudo -H pip3 install --upgrade pip
 ```
 
 ```
-
+sudo -H pip3 install virtualenv
 ```
 
 ```
-
+virtualenv venv
 ```
 
 ```
-
+. venv/bin/activate
+```
+установка зависимостей
+```
+pip install -r requirements.txt
+```
+установить расширение для VSCode
+```
+Remote-SSH
 ```
 
 ```
-
+Host my_remote_server
+    HostName your_server_ip_or_hostname
+    User sammy
+    IdentityFile /location/of/your/private/key
 ```
-
+добавить IP и домен в 
 ```
-
-```
-
-```
-
+ALLOWED_HOSTS
 ```
 
 ```

@@ -8,7 +8,7 @@ cd ~/.ssh | ls -lah
 
 сгенерировать ssh ключ
 ```
-ssh-keygen -t ed25519 -C "your_email@example.com"”
+ssh-keygen
 ```
 
 переходим в каталог с ssh ключами
@@ -18,17 +18,12 @@ cd .ssh/
 
 копируем ключ и вставляем на GitHub
 ```
-cat ./id_ed25519.pub
+cat ./id_rsa.pub
 ```
 
-добавляем почту
+переходим на github.com и добавляем ssh ключ
 ```
-git config --global user.email "hypermail@yandex.ru"
-```
-
-добавляем пользователя
-```
-git config --global user.name "rublock"
+github.com
 ```
 
 скопировать репозиторий с Git через ssh

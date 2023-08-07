@@ -14,6 +14,10 @@ usermod -aG sudo [user name]
 ```
 su - [user name]
 ```
+если нужно изменить пароль
+```
+passwd [username]
+```
 генерируем ssh ключ на локальном компьютере
 ```
 ssh-keygen

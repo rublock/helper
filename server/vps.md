@@ -1,26 +1,26 @@
-
+добавить пользователя
 ```
-
+adduser [user name]
 ```
-
+установить sudo
 ```
-
+apt install sudo
 ```
-
+добавить права на sudo для пользователя
 ```
-
+usermod -aG sudo [user name]
 ```
-
+перейти из root на пользователя
 ```
-
+su - [user name]
 ```
-
+обновление сисетмы
 ```
-
+sudo apt update
 ```
-
+установка пакетов
 ```
-
+sudo apt install gcc
 ```
 
 ```

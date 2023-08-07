@@ -79,12 +79,13 @@ git reset --hard origin/[branch_name]
 ```
 git log --oneline
 ```
+если коммитим с нового устройства, то нужно задать имя
 ```
-
+git config --global user.name [user name]
 ```
-
+или
 ```
-
+git config --global user.email [user email]
 ```
 
 ```

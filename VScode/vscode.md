@@ -21,9 +21,9 @@ ctrl + b
 ```
 "editor.rulers": [100]
 ```
-
+мульти курсор
 ```
-
+editor.multiCursorModifier
 ```
 
 ```

@@ -68,9 +68,6 @@ export DJANGO_SETTINGS_MODULE="config.conf_prod"
 grep DJANGO
 ```
 
-
-
-
 ##в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
 
 тест Gunicorn
@@ -187,23 +184,23 @@ server {
 ```
 
 ```
-
+sudo ln -s /etc/nginx/sites-available/Django_blockexplorer /etc/nginx/sites-enabled
+```
+тест Nginx
+```
+sudo nginx -t
 ```
 
 ```
-
+sudo systemctl restart nginx
+```
+устанавливаем права для пользователя
+```
+sudo usermod -a -G [user name] www-data
 ```
 
 ```
-
-```
-
-```
-
-```
-
-```
-
+sudo chown -R :www-data /path/to/your/static/folder
 ```
 
 ```

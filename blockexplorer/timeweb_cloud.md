@@ -67,6 +67,9 @@ export DJANGO_SETTINGS_MODULE="config.conf_prod"
 ```
 grep DJANGO
 ```
+```
+python manage.py collectstatic
+```
 
 ##в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
 

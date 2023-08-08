@@ -40,125 +40,149 @@ Host my_remote_server
 ```
 ALLOWED_HOSTS
 ```
-размещение статики для Nginx
+подготавливаем conf_prod.py
 ```
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+cd config && touch conf_prod.py
 ```
-
-```
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-```
-
-```
-python manage.py collectstatic
-```
-
-```
-python manage.py runserver 0.0.0.0:8000
-```
-
-```
-cd config/ && touch conf_prod.py
-```
-conf_prod.py
 ```
 import os
 
 from .settings import *
 
-
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 DEBUG = False
+
+del STATICFILES_DIRS
+STATIC_ROOT = BASE_DIR / "static"
 ```
-установка переменной окружения
 ```
-export DJANGO_SETTINGS_MODULE="config.conf_prod" && env | grep DJANGO
+export DJANGO_SECRET_KEY="[key]"
+```
+```
+export DJANGO_SETTINGS_MODULE="config.conf_prod"
 ```
 проверка
 ```
-env | grep DJANGO
+grep DJANGO
+```
+
+
+
+
+
+
+```
+##в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
+
+тест Gunicorn
+```
+gunicorn --bind 0.0.0.0:8000 myproject.wsgi
 ```
 
 ```
-export DJANGO_SECRET_KEY='[key]'
+deactivate
 ```
-в связи с тем что Django не работает с Nginx напряую нужно настровить Gunicorn
+##cоздание файлов сокета и служебных файлов systemd для Gunicorn
 ```
-
-```
-
+sudo nano /etc/systemd/system/gunicorn.socket
 ```
 
 ```
+[Unit]
+Description=gunicorn socket
 
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
 ```
 
 ```
-
+sudo nano /etc/systemd/system/gunicorn.service
 ```
 
 ```
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
 
+[Service]
+User=admin
+Group=admin
+WorkingDirectory=/home/admin/Git/Django_blockexplorer
+ExecStart=/home/admin/Git/Django_blockexplorer/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ```
-
+sudo systemctl start gunicorn.socket
 ```
 
 ```
-
+sudo systemctl enable gunicorn.socket
 ```
 
 ```
-
+sudo systemctl status gunicorn.socket
+```
+проверка, должно быть /run/gunicorn.sock: socket
+```
+file /run/gunicorn.sock
+```
+журналы ошибок
+```
+sudo journalctl -u gunicorn.socket
+```
+если статус Active: inactive (dead)
+```
+curl --unix-socket /run/gunicorn.sock localhost
 ```
 
 ```
-
+sudo systemctl status gunicorn
+```
+журнал
+```
+sudo journalctl -u gunicorn
+```
+перезагрузка
+```
+sudo systemctl daemon-reload
 ```
 
 ```
-
+sudo systemctl restart gunicorn
+```
+##Настройка Nginx как прокси для Gunicorn
+```
+sudo nano /etc/nginx/sites-available/Django_blockexplorer
 ```
 
 ```
+server {
+    listen 80;
+    server_name easyexplorer.io;
 
-```
+    location = /favicon.ico { access_log off; log_not_found off; }
 
-```
+    location /static {
+        root /home/admin/Git/Django_blockexplorer;
+    }
 
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
-
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
 ```
 
 ```

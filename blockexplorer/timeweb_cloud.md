@@ -46,10 +46,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 ```
 
 ```
-python manage.py collectstatic
-```
-
-```
 if DEBUG:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
@@ -59,29 +55,40 @@ else:
 ```
 
 ```
-
+python manage.py collectstatic
 ```
 
 ```
-
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ```
+cd config/ && touch conf_prod.py
+```
+conf_prod.py
+```
+import os
 
+from .settings import *
+
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+
+DEBUG = False
+```
+установка переменной окружения
+```
+export DJANGO_SETTINGS_MODULE="config.conf_prod" && env | grep DJANGO
+```
+проверка
+```
+env | grep DJANGO
 ```
 
 ```
-
+export DJANGO_SECRET_KEY='[key]'
 ```
-
-```
-
-```
-
-```
-
-```
-
+в связи с тем что Django не работает с Nginx напряую нужно настровить Gunicorn
 ```
 
 ```

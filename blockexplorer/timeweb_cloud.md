@@ -63,6 +63,7 @@ export DJANGO_SECRET_KEY="[key]"
 export DJANGO_SETTINGS_MODULE="config.conf_prod"
 ```
 проверка
+
 ```
 grep DJANGO
 ```
@@ -73,6 +74,7 @@ grep DJANGO
 ##в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
 
 тест Gunicorn
+
 ```
 gunicorn --bind 0.0.0.0:8000 myproject.wsgi
 ```
@@ -80,7 +82,9 @@ gunicorn --bind 0.0.0.0:8000 myproject.wsgi
 ```
 deactivate
 ```
+
 ##cоздание файлов сокета и служебных файлов systemd для Gunicorn
+
 ```
 sudo nano /etc/systemd/system/gunicorn.socket
 ```

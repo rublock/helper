@@ -70,9 +70,6 @@ grep DJANGO
 
 
 
-
-
-```
 ##в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
 
 тест Gunicorn

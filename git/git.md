@@ -2,7 +2,7 @@
 
 добавить все файлы и закомитить и запушить
 ```
-git add . && git commit -am commit && git push
+git add . && git commit -am '' && git push
 ```
 
 проверить есть ли ssh ключи на компьютере

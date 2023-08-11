@@ -233,29 +233,29 @@ sudo ufw allow 22
 ```
 sudo ufw enable
 ```
-#####
+##### проверка
 ```
-
-```
-#####
-```
-
+sudo ufw status numbered
 ```
 #####
 ```
-
+sudo ufw allow http
 ```
 #####
 ```
-
+sudo ufw allow https
 ```
-#####
+##### удалить правило
 ```
-
+sudo ufw delete [rule number]
 ```
-#####
+##### отлключение брендмауэра
 ```
-
+sudo ufw disable
+```
+##### перезагрузка
+```
+sudo ufw reset
 ```
 #####
 ```

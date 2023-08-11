@@ -262,11 +262,15 @@ sudo ufw reset
 ```
 cd / && /etc/ssl/ sudo mkdir easyexplorer
 ```
-##### кладем в него файл your_domain.crt
+##### кладем в него файл your_domain.crt c данными о сертификате
 ```
 sudo nano easyexplorer.crt
 ```
 ##### и файл your_domain.key с приватным ключем
+```
+sudo nano easyexplorer.key
+```
+#####
 ```
 sudo nano /etc/nginx/sites-available/Django_blockexplorer
 ```
@@ -279,6 +283,7 @@ server {
     server_name easyexplorer.io;
     ssl_certificate /etc/ssl/easyexplorer/easyexplorer.crt;
     ssl_certificate_key /etc/ssl/easyexplorer/easyexplorer.key;
+
 }
 ```
 #####

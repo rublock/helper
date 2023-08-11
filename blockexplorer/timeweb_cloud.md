@@ -213,7 +213,7 @@ sudo apt install ufw
 ```
 sudo ufw default deny incoming
 ```
-# тест
+### тест
 ```
 sudo ufw default allow outgoing
 ```

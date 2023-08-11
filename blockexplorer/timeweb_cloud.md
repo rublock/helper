@@ -205,17 +205,17 @@ sudo usermod -a -G [user name] www-data
 ```
 sudo chown -R :www-data /path/to/your/static/folder
 ```
-
+##Настройка берндмауэра UWF
+```
+sudo apt install ufw
 ```
 
 ```
-
+sudo ufw default deny incoming
 ```
-
+# тест
 ```
-
-```
-
+sudo ufw default allow outgoing
 ```
 
 ```

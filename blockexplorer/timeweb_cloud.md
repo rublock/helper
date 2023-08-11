@@ -1,4 +1,4 @@
-##Деплой проекта на VPS серевер timeweb
+## Деплой проекта на VPS серевер timeweb
 
 
 установка общих зависимостей
@@ -71,7 +71,7 @@ grep DJANGO
 python manage.py collectstatic
 ```
 
-##в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
+## в связи с тем что Django не работает с Nginx напряую, нужно настроить Gunicorn
 
 тест Gunicorn
 
@@ -83,7 +83,7 @@ gunicorn --bind 0.0.0.0:8000 myproject.wsgi
 deactivate
 ```
 
-##cоздание файлов сокета и служебных файлов systemd для Gunicorn
+## cоздание файлов сокета и служебных файлов systemd для Gunicorn
 
 ```
 sudo nano /etc/systemd/system/gunicorn.socket
@@ -163,7 +163,7 @@ sudo systemctl daemon-reload
 ```
 sudo systemctl restart gunicorn
 ```
-##Настройка Nginx как прокси для Gunicorn
+## Настройка Nginx как прокси для Gunicorn
 ```
 sudo nano /etc/nginx/sites-available/Django_blockexplorer
 ```

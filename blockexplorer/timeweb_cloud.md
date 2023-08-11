@@ -290,9 +290,9 @@ server {
 ```
 sudo /etc/init.d/nginx restart
 ```
-#####
+##### настроить редирект с http
 ```
-
+CNAME www.easyexplorer.io → easyexplorer.io.
 ```
 #####
 ```

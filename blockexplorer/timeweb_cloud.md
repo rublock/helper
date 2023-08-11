@@ -257,25 +257,29 @@ sudo ufw disable
 ```
 sudo ufw reset
 ```
-#####
+## Настройка SSL сертификата для Nginx
+##### создаем каталог в /etc/ssl/
 ```
-
+cd / && /etc/ssl/ sudo mkdir easyexplorer
 ```
-#####
+##### кладем в него файл your_domain.crt
 ```
-
+sudo nano easyexplorer.crt
 ```
-#####
+##### и файл your_domain.key с приватным ключем
 ```
-
-```
-#####
-```
-
+sudo nano /etc/nginx/sites-available/Django_blockexplorer
 ```
 #####
 ```
+server {
 
+    listen 443 ssl;
+
+    server_name easyexplorer.io;
+    ssl_certificate /etc/ssl/easyexplorer/easyexplorer.crt;
+    ssl_certificate_key /etc/ssl/easyexplorer/easyexplorer.key;
+}
 ```
 #####
 ```

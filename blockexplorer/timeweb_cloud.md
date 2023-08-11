@@ -219,19 +219,19 @@ sudo ufw default allow outgoing
 ```
 #####
 ```
-
+sudo ufw default allow outgoing
 ```
 #####
 ```
-
+sudo ufw allow ssh
+```
+##### либо
+```
+sudo ufw allow 22
 ```
 #####
 ```
-
-```
-#####
-```
-
+sudo ufw enable
 ```
 #####
 ```

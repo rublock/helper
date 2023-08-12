@@ -277,13 +277,28 @@ sudo nano /etc/nginx/sites-available/Django_blockexplorer
 #####
 ```
 server {
-
     listen 443 ssl;
 
     server_name easyexplorer.io;
     ssl_certificate /etc/ssl/easyexplorer/easyexplorer.crt;
     ssl_certificate_key /etc/ssl/easyexplorer/easyexplorer.key;
 
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static {
+        root /home/admin/Git/Django_blockexplorer;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+
+server {
+    listen 80;
+    server_name easyexplorer.io www.easyexplorer.io;
+    return 301 https://$host$request_uri;
 }
 ```
 #####

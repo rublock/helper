@@ -295,10 +295,6 @@ server {
     }
 }
 ```
-#####
-```
-sudo /etc/init.d/nginx restart
-```
 ##### настроить редирект с http
 ```
 server {
@@ -309,7 +305,7 @@ server {
 ```
 #####
 ```
-
+sudo systemctl restart nginx
 ```
 #####
 ```

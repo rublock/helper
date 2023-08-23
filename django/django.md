@@ -13,33 +13,33 @@ sudo -H pip3 install --upgrade pip
 ```
 sudo pip install virtualenv && virtualenv venv && . venv/bin/activate
 ```
-
-* 
+* создаем .gitignore
 ```
-
+wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
 ```
-* 
+* добавляем лицензию
 ```
-
+echo "MIT" > LICENSE
 ```
-* 
+* смотрим актуальную версию Django
 ```
-
-```
-* 
-```
-
+https://www.djangoproject.com/download/
 ```
 * установка Django
 ```
 pip install --no-cache-dir 'Django<[version]'
 ```
 
+
+
+
+
+
+
 * устновка зависимостей
 ```
 pip install -r requirements.txt
 ```
-
 * экспорт зависимостей
 ```
 pip freeze > requirements.txt

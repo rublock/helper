@@ -41,9 +41,20 @@ python manage.py startapp mainapp
 run and debug => create a launch.json => Django => args: [ "runserver", "0.0.0.0:8000" ]
 ```
 
-* добавить созданое приложение mainapp
-```
-INSTALLED APPS в settings.py
+* добавить созданое приложение mainapp в INSTALLED APPS в файле settings.py
+```python
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    'corsheaders',
+    "mainapp",
+    'django.contrib.humanize',
+    'mathfilters',
+]
 ```
 
 * создаем в нашем приложении mainapp

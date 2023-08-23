@@ -5,7 +5,7 @@
 ```
 git clone
 ```
-
+*
 установка Django
 ```
 pip install --no-cache-dir 'Django<[version]'

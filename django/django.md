@@ -45,13 +45,13 @@ python manage.py startapp mainapp
 ```
 python manage.py runserver 0.0.0.0:8000
 ```
-* 
+* фиксируем имзенения на github
 ```
-
+git add . && git commit -am "Initial commit"
 ```
-* 
+* переходим на dev ветку
 ```
-
+git checkout -b 'dev'
 ```
 
 

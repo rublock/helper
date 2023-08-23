@@ -5,6 +5,15 @@
 ```
 git clone
 ```
+* устанавливаем pip
+```
+sudo -H pip3 install --upgrade pip
+```
+* устанавливаем вирутальное окружение virtualenv
+```
+sudo pip install virtualenv && virtualenv venv && . venv/bin/activate
+```
+
 * 
 ```
 

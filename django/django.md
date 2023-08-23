@@ -33,6 +33,26 @@ https://www.djangoproject.com/download/
 ```
 pip install Django==4.2.4
 ```
+* инициализация проекта config - папка с настройками проекта
+```
+django-admin startproject config .
+```
+* создаем Django приложение mainapp - имя приложения
+```
+python manage.py startapp mainapp
+```
+* проверяем работу Django на локальной машине
+```
+python manage.py runserver 0.0.0.0:8000
+```
+* 
+```
+
+```
+* 
+```
+
+```
 
 
 

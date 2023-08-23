@@ -1,12 +1,12 @@
 # Django
 
-##### - инициализируем репозиторий на github.com
-##### - клонируем репозиторий
+* инициализируем репозиторий на github.com
+* клонируем репозиторий
 ```
 git clone
 ```
-*
-установка Django
+
+* установка Django
 ```
 pip install --no-cache-dir 'Django<[version]'
 ```

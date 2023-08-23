@@ -21,13 +21,17 @@ wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/main/Pytho
 ```
 echo "MIT" > LICENSE
 ```
+* создаем README.md
+```
+touch README.md
+```
 * смотрим актуальную версию Django
 ```
 https://www.djangoproject.com/download/
 ```
 * установка Django
 ```
-pip install --no-cache-dir 'Django<[version]'
+pip install Django==4.2.4
 ```
 
 

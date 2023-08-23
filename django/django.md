@@ -65,13 +65,7 @@ git checkout -b 'dev'
 * views.py - модуль с контроллерами приложения
 * db.sqlite3 - модуль с базой данный sqlite
 * manage.py - модуль управления проектом
-
-
-
-
-
-
-
+---
 * настройка отладчика
 ```
 run and debug => create a launch.json => Django => args: [ "runserver", "0.0.0.0:8000" ]

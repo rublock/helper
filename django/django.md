@@ -31,7 +31,7 @@ python -m pip uninstall [name]
 django-admin startproject config .
 ```
 
-создание приложения
+* создание приложения
 ```
 python manage.py startapp mainapp
 ```

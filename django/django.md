@@ -106,7 +106,7 @@ python manage.py runserver
 python manage.py collectstatic
 ```
 
-##### для выполнения запросов и тестирования фрагментов кода
+###### для выполнения запросов и тестирования фрагментов кода
 ```
 python manage.py shell
 ```

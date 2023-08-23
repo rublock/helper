@@ -21,7 +21,7 @@ pip install -r requirements.txt
 pip freeze > requirements.txt
 ```
 
-удаление зависимости
+* удаление зависимости
 ```
 python -m pip uninstall [name]
 ```

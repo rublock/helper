@@ -66,9 +66,28 @@ git checkout -b 'dev'
 * db.sqlite3 - модуль с базой данный sqlite
 * manage.py - модуль управления проектом
 ---
+* устанавливаем плагины для VSCode - Python, Pylance, Djaneiro
 * настройка отладчика
-```
-run and debug => create a launch.json => Django => args: [ "runserver", "0.0.0.0:8000" ]
+* в правом нижнем углу выбрать интерпритатор Python из виртуального окружения
+* настраиваем run and debug - выбираем Django - нажимаем шестиренку
+```python
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Django",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "0.0.0.0:8000",
+            ],
+            "django": true,
+            "justMyCode": true
+        }
+    ]
+}
 ```
 * добавить созданое приложение mainapp в INSTALLED APPS в файле settings.py
 ```python

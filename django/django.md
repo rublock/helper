@@ -100,85 +100,27 @@ INSTALLED_APPS = [
     'mainapp',
 ]
 ```
+## Создаем простейшее представление
+* в config/urls.py
+```python
+from django.contrib import admin
+from django.urls import path
 
-* создаем в нашем приложении mainapp
-`
-urls.py
-`
+from mainapp import views
 
-* пример загрузки статичного файла в `urls.py` из папки mainapp
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.home_page, name='home_page'),
+]
 ```
-from mainapp.apps import MainappConfig 
+* в mainapp/views.py
+```python
+from django.http import HttpResponse
 
-app_name = MainappConfig.nameв urls.py
+def home_page(request):
+    return HttpResponse('This is home page!')
 ```
-
-* в `urls.py` из папки mainapp
-```
-path('', include('mainapp.urls')),
-path("", views.MainPageView.as_view(), name="home"),
-```
-
-* во views.py
-```
-class MainPageView(TemplateView): 
-    template_name = "mainapp/base.html"
-```
-
-* создаем папку static в корне и прописываем в файле `settings.py`
-```
-STATICFILES_DIRS = [BASE_DIR / 'static',] , 
-src="/static/img/logo.png"
-```
-
-* создать файлы миграций
-```
-python manage.py makemigrations
-```
-
-* миграции базы данных
-```
-python manage.py migrate
-```
-
-* откат миграции
-```
-python manage.py migrate mainapp [last migration]
-```
-
-* создать супер пользователя
-```
-python manage.py createsuperuser
-```
-
-* изменить пароль супер пользователя
-```
-python manage.py changepassword [nick name]
-```
-
-* запуск сервера
-```
-python manage.py runserver
-```
-
-* сбор статики
-```
-python manage.py collectstatic
-```
-
-* для выполнения запросов и тестирования фрагментов кода
-```
-python manage.py shell
-```
-* 
-```
-
-```
-* 
-```
-
-```
-* 
+* пользователь зайдет на главную страницу urls.py это зафиксирует и запустит home_page() во вьюхе, та в свою очередь отправит HttpResponse('This is home page!')
 ```
 
 ```

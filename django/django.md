@@ -120,7 +120,8 @@ from django.http import HttpResponse
 def home_page(request):
     return HttpResponse('This is home page!')
 ```
-* пользователь зайдет на главную страницу urls.py это зафиксирует и запустит home_page() во вьюхе, та в свою очередь отправит HttpResponse('This is home page!')
+* пользователь зайдет на главную страницу urls.py -> это зафиксирует и запустит home_page() во вьюхе -> та в свою очередь отправит HttpResponse('This is home page!')
+* 
 ```
 
 ```

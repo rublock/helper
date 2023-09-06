@@ -33,6 +33,10 @@ https://www.djangoproject.com/download/
 ```
 pip install Django==4.2.4
 ```
+* проверка версии Django
+```
+python -m django --version
+```
 * инициализация проекта config - папка с настройками проекта
 ```
 django-admin startproject config .

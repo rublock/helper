@@ -122,7 +122,6 @@ def home_page(request):
     return HttpResponse('This is home page!')
 ```
 * пользователь зайдет на главную страницу -> urls.py это зафиксирует и запустит home_page() во вьюхе -> та в свою очередь отправит HttpResponse('This is home page!')
-* 
 ## Создаем html шаблон
 ```
 cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch home_page.html
@@ -132,11 +131,9 @@ cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && 
 def home(request):
     return render(request, "mainapp/base.html")
 ```
-* 
 ```
 cd mainapp && touch urls.py
 ```
-*
 ```python
 from django.urls import path
 

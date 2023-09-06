@@ -101,6 +101,7 @@ INSTALLED_APPS = [
 ]
 ```
 ## Создаем простейшее представление
+
 * в config/urls.py
 ```python
 from django.contrib import admin
@@ -122,8 +123,9 @@ def home_page(request):
 ```
 * пользователь зайдет на главную страницу -> urls.py это зафиксирует и запустит home_page() во вьюхе -> та в свою очередь отправит HttpResponse('This is home page!')
 * 
+## Создаем html шаблон
 ```
-
+cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp  && touch home_page.html
 ```
 * 
 ```

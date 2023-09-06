@@ -100,14 +100,16 @@ INSTALLED_APPS = [
     'mainapp',
 ]
 ```
-## Создаем html шаблон
+## Создаем html шаблон главной страницы
 ```
 cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch home_page.html
 ```
 * во views.py
 ```python
-def home(request):
-    return render(request, "mainapp/base.html")
+from django.shortcuts import render
+
+def home_page(request):
+    return render(request, "mainapp/home_page.html")
 ```
 ```
 cd mainapp && touch urls.py
@@ -121,12 +123,19 @@ from mainapp.apps import MainappConfig
 app_name = MainappConfig.name
 
 urlpatterns = [
-    path("", views.home, name="home_page"),
+    path("", views.home_page, name="home_page"),
 ]
 ```
-* 
+* в config/urls.py
 ```
+from django.contrib import admin
+from django.urls import path, include
 
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include("mainapp.urls")),
+]
 ```
 * 
 ```

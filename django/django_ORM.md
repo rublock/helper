@@ -63,21 +63,27 @@ DATABASES = {
     }
 }
 ```
-* 
+* чтобы подключить postgres
 ```
-
+createdb -U postgres library
 ```
-* 
+* драйвер для подключения postgres
 ```
-
+pip install psycopg2-binary
 ```
-* 
+* изменяем настройки в config/settings.py
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'library',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+    }
+}
 ```
-
 ```
-* 
-```
-
+python manage.py migrate
 ```
 * 
 ```

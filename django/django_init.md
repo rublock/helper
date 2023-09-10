@@ -33,6 +33,10 @@ https://www.djangoproject.com/download/
 ```
 pip install Django==4.2.4
 ```
+* или есть файл с зависимостями
+```
+pip install -r requirements.txt
+```
 * проверка версии Django
 ```
 python -m django --version

@@ -69,19 +69,24 @@ urlpatterns = [
 def home_page(request):
     data = request.GET.get("data")
     print(data) #some_data
-    return render(request, "mainapp/home_page.html", data)
+    context = {
+        "data": data,
+    }
+    return render(request, "mainapp/home_page.html", context)
 ```
 * в шаблоне
 ```
 {{ data }}
 ```
-* 
+* запускаем
 ```
+http://localhost:8000/?data=some_data
+```
+* вывод
+```
+hello world
 
-```
-* 
-```
-
+some_data
 ```
 * 
 ```

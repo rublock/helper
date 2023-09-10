@@ -135,7 +135,7 @@ urlpatterns = [
 ]
 ```
 * в config/urls.py
-```
+```python
 from django.contrib import admin
 from django.urls import path, include
 
@@ -162,13 +162,13 @@ def home_page(request):
 http://localhost:8000/123
 ```
 * mainapp/views.py
-```
+```python
 def get_int(request, pk):
     print(pk) #123
     return render(request, "mainapp/home_page.html")
 ```
 * mainapp/urls.py
-```
+```python
 urlpatterns = [
     path("", views.home_page, name="home_page"),
     path("<int:pk>", views.get_int, name="get_int"),

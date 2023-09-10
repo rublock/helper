@@ -64,13 +64,16 @@ urlpatterns = [
     path("<int:pk>", views.get_int, name="get_int"),
 ]
 ```
-* 
+* передаем контекст в шаблон
+```python
+def home_page(request):
+    data = request.GET.get("data")
+    print(data) #some_data
+    return render(request, "mainapp/home_page.html", data)
 ```
-
+* в шаблоне
 ```
-* 
-```
-
+{{ data }}
 ```
 * 
 ```

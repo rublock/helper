@@ -2,6 +2,19 @@
 ```
 cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch home_page.html
 ```
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>hello world</p>
+</body>
+</html>
+```
 * во views.py
 ```python
 from django.shortcuts import render
@@ -75,8 +88,19 @@ def home_page(request):
     return render(request, "mainapp/home_page.html", context)
 ```
 * в шаблоне
-```
-{{ data }}
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>hello world</p>
+    {{ data }}
+</body>
+</html>
 ```
 * запускаем
 ```

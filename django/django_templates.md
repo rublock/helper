@@ -1,4 +1,4 @@
-## Создаем html шаблон главной страницы
+# Создаем html шаблон главной страницы
 ```
 cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch home_page.html
 ```

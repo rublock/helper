@@ -145,30 +145,34 @@ urlpatterns = [
     path('', include("mainapp.urls")),
 ]
 ```
-* забираем данные от клиента
+* забираем данные от клиента через параметр
+```
+http://localhost:8000/?data=some_data
+```
 ```python
 from django.shortcuts import render
 
 def home_page(request):
     data = request.GET.get("data")
-    print(data)
+    print(data) #some_data
     return render(request, "mainapp/home_page.html")
 ```
-* отправляем данные от клиента
+* забирем числовое значение через http адрес
 ```
-http://localhost:8000/?data=some_data
+http://localhost:8000/123
 ```
-* 
+* mainapp/views.py
 ```
-
+def get_int(request, pk):
+    print(pk) #123
+    return render(request, "mainapp/home_page.html")
 ```
-* 
+* mainapp/urls.py
 ```
-
-```
-* 
-```
-
+urlpatterns = [
+    path("", views.home_page, name="home_page"),
+    path("<int:pk>", views.get_int, name="get_int"),
+]
 ```
 * 
 ```

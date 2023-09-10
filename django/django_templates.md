@@ -146,6 +146,12 @@ def pagination(request):
     }
     return render(request, 'home_page.html', context)
 ```
+* mainapp/urls.py
+```python
+urlpatterns = [
+    path("", views.pagination, name="pagination"),
+]
+```
 * в шаблоне
 ```
 {%  %}

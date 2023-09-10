@@ -37,7 +37,10 @@ pip install Django==4.2.4
 ```
 pip install -r requirements.txt
 ```
-* в правом нижнем углу VSCode выбераем пусть к интерпритатору python из нашей папки venv/bin/python
+* в правом нижнем углу VSCode выбераем пусть к интерпритатору python из нашей папки
+```
+venv/bin/python
+```
 * проверка версии Django
 ```
 python -m django --version

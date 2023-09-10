@@ -49,6 +49,10 @@ python manage.py startapp mainapp
 ```
 python manage.py runserver 0.0.0.0:8000
 ```
+* заливаем зависимости в файл
+```
+pip freeze requirements.txt
+```
 * фиксируем имзенения на github
 ```
 git add . && git commit -am "Initial commit"
@@ -141,13 +145,17 @@ urlpatterns = [
     path('', include("mainapp.urls")),
 ]
 ```
-* 
-```
+* Забрать данные от клиента
+```python
+from django.shortcuts import render
 
+def home_page(request):
+    data = request.GET["data"]
+    return render(request, "mainapp/home_page.html")
 ```
-* 
+* отправляем данные от клиента
 ```
-
+http://localhost:8000/?data=some_data
 ```
 * 
 ```

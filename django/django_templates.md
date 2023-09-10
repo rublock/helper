@@ -153,26 +153,26 @@ urlpatterns = [
 ]
 ```
 * в шаблоне
-```
-    {% for i in page %}
-        {{ i }}
-    {% endfor %}
-    <br>
-    {% if page.has_previous %}
-        <a href='?page={{ page.previous_page_number }}'> << </a>
-    {% endif %}
+```html
+{% for i in page %}
+    {{ i }}
+{% endfor %}
+<br>
+{% if page.has_previous %}
+    <a href='?page={{ page.previous_page_number }}'> << </a>
+{% endif %}
 
-    {% for i in page.paginator.page_range %}
-        {% if page.number == i %}
-            <a href='?page={{ i }}'> {{ i }} </a>
-        {% elif i > page.number|add:'-3' and i < page.number|add:'3' %}
-            <a href='?page={{ i }}'> {{ i }} </a>
-        {% endif %}
-    {% endfor %}
-
-    {% if page.has_next %}
-        <a href='?page={{ page.next_page_number }}'> >> </a>
+{% for i in page.paginator.page_range %}
+    {% if page.number == i %}
+        <a href='?page={{ i }}'> {{ i }} </a>
+    {% elif i > page.number|add:'-3' and i < page.number|add:'3' %}
+        <a href='?page={{ i }}'> {{ i }} </a>
     {% endif %}
+{% endfor %}
+
+{% if page.has_next %}
+    <a href='?page={{ page.next_page_number }}'> >> </a>
+{% endif %}
 ```
 * 
 ```

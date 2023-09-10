@@ -124,21 +124,38 @@ some_data
 ```html
 <ul>
     {% for i in data %}
-        <li>{{ i }}</li>
+        {% if i > 5 %}
+            <li>{{ i }}</li>
+        {% endif %}
     {% endfor %}
 </ul>
 ```
-* 
-```
+### Пагинация в шаблонах
+* mainapp/views.py
+```python
+from django.core.paginator import Paginator
 
-```
-* 
-```
+content = [str(i) for i in range(1000)]
 
+def pagination(request):
+    page_num = int(request.GET.get('page', 1))
+    pag = Paginator(content, 10)
+    page = pag.get_page(page_num)
+    context = {
+        "page": page,
+    }
+    return render(request, 'home_page.html', context)
 ```
-* 
+* в шаблоне
 ```
+{%  %}
+{% if page.has_previous %}
+    <a href=?page{{ page.previous_page_number }}> << </a>
+{% endif %}
 
+{% if page.has_next %}
+    <a href=?page{{ page.next_page_number }}> >> </a>
+{% endif %}
 ```
 * 
 ```

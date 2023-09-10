@@ -65,11 +65,14 @@ DATABASES = {
 ```
 * чтобы подключить postgres
 ```
-createdb -U postgres library
+sudo apt update && sudo apt install postgresql
 ```
 * драйвер для подключения postgres
 ```
 pip install psycopg2-binary
+```
+```
+createdb -U postgres library
 ```
 * изменяем настройки в config/settings.py
 ```python
@@ -77,15 +80,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'library',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 ```
 ```
 python manage.py migrate
 ```
-* 
+* наполнение базы данных
 ```
 
 ```

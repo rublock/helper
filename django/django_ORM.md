@@ -90,7 +90,7 @@ DATABASES = {
 ```
 python manage.py migrate
 ```
-* наполнение базы данных
+* 05-Запросы к БД.mp4
 ```
 
 ```

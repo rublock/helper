@@ -112,13 +112,21 @@ hello world
 
 some_data
 ```
-* 
+* цикл в шаблоне
+```html
+<ul>
+    {% for i in data %}
+        <li>{{ i }}</li>
+    {% endfor %}
+</ul>
 ```
-
-```
-* 
-```
-
+* цикл с уловием
+```html
+<ul>
+    {% for i in data %}
+        <li>{{ i }}</li>
+    {% endfor %}
+</ul>
 ```
 * 
 ```

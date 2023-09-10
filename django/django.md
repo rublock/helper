@@ -51,7 +51,7 @@ python manage.py runserver 0.0.0.0:8000
 ```
 * заливаем зависимости в файл
 ```
-pip freeze requirements.txt
+pip freeze -> requirements.txt
 ```
 * фиксируем имзенения на github
 ```
@@ -145,12 +145,13 @@ urlpatterns = [
     path('', include("mainapp.urls")),
 ]
 ```
-* Забрать данные от клиента
+* забираем данные от клиента
 ```python
 from django.shortcuts import render
 
 def home_page(request):
-    data = request.GET["data"]
+    data = request.GET.get("data")
+    print(data)
     return render(request, "mainapp/home_page.html")
 ```
 * отправляем данные от клиента

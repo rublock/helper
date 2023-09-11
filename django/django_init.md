@@ -108,13 +108,13 @@ INSTALLED_APPS = [
     'mainapp',
 ]
 ```
+* если нужен доступ в админку
+```
+python manage.py createsuperuser
+```
 * фиксируем имзенения на github
 ```
 git add . && git commit -am "Initial commit"
-```
-* 
-```
-
 ```
 * 
 ```

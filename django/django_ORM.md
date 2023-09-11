@@ -90,21 +90,21 @@ DATABASES = {
 ```
 python manage.py migrate
 ```
-* 05-Запросы к БД.mp4
+* открыть консоль postgres
 ```
-
+sudo -u postgres psql
 ```
-* 
+* список БД
 ```
-
+\l
 ```
-* 
+* переход на нужную БД
 ```
-
+\c db_name
 ```
-* 
+* открыть все таблицы БД
 ```
-
+\dt
 ```
 * 
 ```

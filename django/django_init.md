@@ -114,7 +114,7 @@ python manage.py createsuperuser
 ```
 * фиксируем имзенения на github
 ```
-git add . && git commit -am "Initial commit"
+git add . && git commit -am "Initial commit" && git push
 ```
 * 
 ```

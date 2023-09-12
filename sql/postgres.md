@@ -7,13 +7,13 @@ sudo apt update
 sudo apt install postgresql
 ```
 * БД создается с дефолтным пользователем postgres
-* переходим на этого пользователя
-```
-sugo -i -u postgres
-```
 * запускаем консоль от имени пользователя postgres
 ```
-psql
+sudo -u postgres psql
+```
+*
+```
+
 ```
 * 
 ```

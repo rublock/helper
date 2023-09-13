@@ -139,9 +139,15 @@ def orm(request):
 
     return render(request, 'mainapp/orm.html')
 ```
-* 
-```
+* получение данных из БД
+```python
+def get_data_orm(request):
+    data = ModelName.objects.all()
+    context = {
+            data: 'data',
+        }
 
+    return render(request, 'mainapp/orm.html', context)
 ```
 * 
 ```

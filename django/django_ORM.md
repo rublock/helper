@@ -141,6 +141,8 @@ def orm(request):
 ```
 * получение данных из БД
 ```python
+from mainapp.models import ModelName
+
 def get_data_orm(request):
     data = ModelName.objects.all()
     #действие с данными

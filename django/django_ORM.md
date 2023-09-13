@@ -131,20 +131,20 @@ WHERE pg_stat_activity.datname = 'db_name' AND pid <> pg_backend_pid();
 ```
 * передать данные из view в БД
 ```python
-from mainapp.models import ModelName
+from mainapp.models import Book
 
 def orm(request):
-    data = ModelName(name='some_data')
+    data = Book(name='some_data')
     data.save()
 
     return render(request, 'mainapp/orm.html')
 ```
 * получение данных из БД
 ```python
-from mainapp.models import ModelName
+from mainapp.models import Book
 
 def get_data_orm(request):
-    data = ModelName.objects.all()
+    data = Book.objects.all()
     #действие с данными
     context = {
             data: 'data',

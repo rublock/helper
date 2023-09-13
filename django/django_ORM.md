@@ -143,6 +143,7 @@ def orm(request):
 ```python
 def get_data_orm(request):
     data = ModelName.objects.all()
+    #действие с данными
     context = {
             data: 'data',
         }

@@ -98,33 +98,46 @@ sudo -u postgres psql
 ```
 \l
 ```
+* создать БД
+```
+CREATE DATABASE db_name;
+```
 * переход на нужную БД
 ```
 \c db_name
 ```
 * показать все таблицы БД
 ```
-\dt
+\d
 ```
-* 
+* открыть свойства таблицы БД
 ```
+\d table_name
+```
+* открыть таблицу
+```
+SELECT * FROM table_name;
+```
+* удалить БД
+```
+DROP DATABASE db_name;
+```
+* если появляется ошибка ERROR:  database "library" is being accessed by other users
+```sql
+SELECT pg_terminate_backend (pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'db_name' AND pid <> pg_backend_pid();
 
 ```
-* 
-```
+* передать данные из view в БД
+```python
+from mainapp.models import ModelName
 
-```
-* 
-```
+def orm(request):
+    data = ModelName(name='some_data')
+    data.save()
 
-```
-* 
-```
-
-```
-* 
-```
-
+    return render(request, 'mainapp/orm.html')
 ```
 * 
 ```

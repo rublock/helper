@@ -166,9 +166,8 @@ from .models import Book
 class BookAdmin(admin.ModelAdmin):
     list_display = 'id', 'book_name'
 ```
-* 
 ```
-
+http://127.0.0.1:8000/admin/
 ```
 * 
 ```

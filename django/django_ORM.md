@@ -152,9 +152,16 @@ def get_data_orm(request):
 
     return render(request, 'mainapp/orm.html', context)
 ```
-* 
-```
+### Админка Djnago
+* в mainapp/admin.py
+```python
+from django.contrib import admin
+from .models import Book
 
+
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = 'id', 'book_name'
 ```
 * 
 ```

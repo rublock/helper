@@ -153,6 +153,9 @@ def get_data_orm(request):
     return render(request, 'mainapp/orm.html', context)
 ```
 ### Админка Djnago
+```
+python manage.py createsuperuser
+```
 * в mainapp/admin.py
 ```python
 from django.contrib import admin

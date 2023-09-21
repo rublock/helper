@@ -152,7 +152,7 @@ def get_data_orm(request):
 
     return render(request, 'mainapp/orm.html', context)
 ```
-### Админка Djnago
+* настройка админки
 ```
 python manage.py createsuperuser
 ```
@@ -169,12 +169,73 @@ class BookAdmin(admin.ModelAdmin):
 ```
 http://127.0.0.1:8000/admin/
 ```
-* 
-```
+* создаем связи Продукт -> Заказ на примере книжного магазина
+* в mainapp/models.py
+```python
+from django.db import models
+
+
+class Books(models.Model):
+    author_name = models.CharField(max_length=100)
+    book_name = models.CharField(max_length=100)
+    book_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    class Meta:
+        verbose_name = "Book"
+        verbose_name_plural = "Books"
+
+
+class Orders(models.Model):
+    description = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = "Orders"
+        verbose_name_plural = "Orders"
+
+
+class Order(models.Model):
+    product = models.ForeignKey(Books, on_delete=models.CASCADE, related_name='position')
+    # products = models.ManyToManyField(Books, related_name='position')
+    # related_name задан как 'position', то вы сможете получить все заказы,
+    # связанные с конкретной книгой, используя это имя. Например:
+    # Получение всех заказов для определенной книги
+
+    # book = Books.objects.get(id=1)  # Предположим, что у книги есть id=1
+    # orders = book.orders.all()
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name='positions')
+    # on_delete=models.CASCADE означает
+    # Если объект Books, на который ссылается поле product, будет удален, то все объекты Cart,
+    # которые имеют эту Books в качестве значения поля product, также будут удалены.
+    # То есть, удаление Books приведет к удалению всех связанных объектов Cart
+    quantity = models.IntegerField()
+
+    class Meta:
+        verbose_name = "Order"
+        verbose_name_plural = "Order"
 
 ```
-* 
-```
+* создаем БД и делаем миграции
+* настраиваем админку
+* где OrderPositionsInLine - для построчного отображения товаров в заказе
+```python
+from django.contrib import admin
+from .models import Books, Orders, Order
+
+
+class OrderPositionsInLine(admin.TabularInline):
+    model = Order
+    extra = 0
+
+
+@admin.register(Books)
+class BooksAdmin(admin.ModelAdmin):
+    list_display = ['id', 'author_name', 'book_name', 'book_price']
+
+
+@admin.register(Orders)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['id', 'description']
+    inlines = [OrderPositionsInLine]
 
 ```
 * 

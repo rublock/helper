@@ -33,19 +33,20 @@ CREATE DATABASE db_name;
 ```
 * создать таблицу
 ```
-CREATE TABLE test_from_psql (id SERIAL);
+CREATE TABLE table (id SERIAL);
 ```
 * посмотреть таблицу
 ```
 \d table_name
 ```
-* 
+* вставить данные в таблицу
 ```
-
+INSERT INTO table (id)
+VALUES (1);
 ```
-* 
+* посмотреть таблицу
 ```
-
+SELECT * FROM table;
 ```
 * 
 ```

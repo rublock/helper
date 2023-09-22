@@ -35,6 +35,10 @@ CREATE DATABASE db_name;
 ```
 CREATE TABLE table (id SERIAL);
 ```
+* удалить таблиу
+```
+DROP TABLE table;
+```
 * посмотреть таблицу
 ```
 \d table_name
@@ -55,16 +59,16 @@ SELECT * FROM table;
 * создаем связи между таблицами
 ```sql
 CREATE TABLE table1 (
-	id SERIAL
-	some_data TEXT,
-)
-
+        id SERIAL PRIMARY KEY,
+        some_data TEXT 
+);
+```
+```sql
 CREATE TABLE table2 (
-	id SERIAL
-	from_table1 BIGINT unsigned not null,
-
-	FOREIGN KEY (from_table1) references table1(id)
-)
+    id SERIAL PRIMARY KEY,
+    from_table1 BIGINT NOT NULL,
+    FOREIGN KEY (from_table1) REFERENCES table1(id)
+);
 ```
 * 
 ```

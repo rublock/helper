@@ -31,6 +31,10 @@ CREATE DATABASE db_name;
 ```
 \d
 ```
+* создать таблицу
+```
+CREATE TABLE test_from_psql (id SERIAL);
+```
 * посмотреть таблицу
 ```
 \d table_name

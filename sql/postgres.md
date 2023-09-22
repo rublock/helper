@@ -40,9 +40,13 @@ CREATE TABLE table (id SERIAL);
 \d table_name
 ```
 * вставить данные в таблицу
-```
+```sql
 INSERT INTO table (id)
 VALUES (1);
+```
+```sql
+ALTER TABLE employees
+ADD COLUMN email VARCHAR(255);
 ```
 * посмотреть таблицу
 ```

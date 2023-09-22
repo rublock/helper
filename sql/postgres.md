@@ -48,9 +48,19 @@ VALUES (1);
 ```
 SELECT * FROM table;
 ```
-* 
-```
+* создаем связи между таблицами
+```sql
+CREATE TABLE table1 (
+	id SERIAL
+	some_data TEXT,
+)
 
+CREATE TABLE table2 (
+	id SERIAL
+	from_table1 BIGINT unsigned not null,
+
+	FOREIGN KEY (from_table1) references table1(id)
+)
 ```
 * 
 ```

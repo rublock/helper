@@ -56,7 +56,15 @@ python manage.py migrate
 ```
 * если нам нужно вернуться к миграции к другой миграции мы выполним следующую команду
 ```
-python manage.py migrate mainapp 0005
+python manage.py migrate mainapp 0005_second_last_migration
+```
+* если нам нужно отменить все миграции приложения, мы воспользуемся следующей командой
+```
+python manage.py migrate mainapp zero
+```
+* если нам нужно полностью очистить всю базу данных, мы можем использовать следующую команду
+```
+python manage.py flush
 ```
 * натройки базы данных есть в файле config/settings.py
 ```python

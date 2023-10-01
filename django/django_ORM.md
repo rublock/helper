@@ -249,6 +249,11 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderPositionsInLine]
 
 ```
+* для отображения названия объекта в админке добавляем в class Books
+```python
+    def __str__(self):
+        return f'{self.book_name, self.author_name}'
+```
 * Shell_plus для доступа к данным БД
 ```
 pip install django-extensions

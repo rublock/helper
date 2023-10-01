@@ -266,9 +266,9 @@ INSTALLED_APPS = [
     'mainapp',
 ]
 ```
-* 
+* чтобы shell отрисовывал SQL запросы
 ```
-
+python manage.py shell_plus --print-sql
 ```
 * 
 ```

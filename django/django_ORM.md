@@ -249,13 +249,17 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderPositionsInLine]
 
 ```
-* 
+* Shell_plus для доступа к данным БД
 ```
-
+pip install django-extensions
 ```
-* 
-```
-
+* Добавим django-extensions в файл config/settings.py
+```python
+INSTALLED_APPS = [
+    # ...
+    'django_extensions',
+    'mainapp',
+]
 ```
 * 
 ```

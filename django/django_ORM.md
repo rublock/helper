@@ -195,7 +195,6 @@ class Orders(models.Model):
 
 class Order(models.Model):
     product = models.ForeignKey(Books, on_delete=models.CASCADE, related_name='position')
-    # products = models.ManyToManyField(Books, related_name='position')
     # related_name задан как 'position', то вы сможете получить все заказы,
     # связанные с конкретной книгой, используя это имя. Например:
     # Получение всех заказов для определенной книги

@@ -54,6 +54,10 @@ class Migration(migrations.Migration):
 ```
 python manage.py migrate
 ```
+* если нам нужно вернуться к миграции к другой миграции мы выполним следующую команду
+```
+python manage.py migrate mainapp 0005
+```
 * натройки базы данных есть в файле config/settings.py
 ```python
 DATABASES = {

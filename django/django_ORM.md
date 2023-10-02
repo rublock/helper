@@ -289,29 +289,25 @@ class Employee(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 ```
-* 
+* при этом связать данные между таблицами прийдется вручную, например
 ```
-
+e = Employee(first_name='John',last_name='Doe')
 ```
-* 
 ```
-
+e.save()
 ```
-* 
 ```
-
+c = Contact(phone='+79120000000', address='Moscow city, Leninsky avenue, house 11')
 ```
-* 
 ```
-
+c.save()
 ```
-* 
+* делаем связку
 ```
-
+e.contact = c
 ```
-* 
 ```
-
+e.save()
 ```
 * 
 ```

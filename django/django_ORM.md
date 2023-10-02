@@ -339,10 +339,8 @@ class Employee(models.Model):
 ```
 python manage.py shell_plus --print-sql
 ```
-* добавляем сотрудников
+* добавляем сотрудника
 ```
-e = Employee(first_name='John',last_name='Doe')
-e.save()
 e = Employee(first_name='Jane',last_name='Doe')
 e.save()
 ```
@@ -351,9 +349,9 @@ e.save()
 d = Department(name='IT',description='Information Technology')
 d.save()
 ```
-* 
+* присваиваем сотруднику отдел
 ```
-
+e.department = d
 ```
 * 
 ```

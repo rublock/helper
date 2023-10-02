@@ -303,6 +303,10 @@ c.save()
 e.contact = c
 e.save()
 ```
+* при попытке привязать такойже Contact к еще одному сотрудникоу возникнет ошибка
+```
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "mainapp_employee_contact_id_key"
+```
 ### отношения Django One-To-Many
 * например когда несколько сотрундников работают в одном отделе, но при этом один конкретный сотрудник может работать тольков одном отделе
 * данная структура реализуюется через строку

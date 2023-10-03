@@ -357,37 +357,83 @@ d.save()
 ```
 e.department = d
 ```
-* 
+### отношения Django Many-to-Many
+* например когда скольок угодно сотрудников имеют зарплатные программы и соответственно зарплатные программы могут относиться к скольки угодно сотрудникам
+* связь реализуется через строчку
 ```
+compensations = models.ManyToManyField(Compensation)
+```
+```python
+class Compensation(models.Model):
+    name = models.CharField(max_length=255)
 
-```
-* 
-```
+    def __str__(self):
+        return self.name
 
-```
-* 
-```
 
-```
-* 
-```
+class Contact(models.Model):
+    phone = models.CharField(max_length=50, unique=True)
+    address = models.CharField(max_length=50)
 
-```
-* 
-```
+    def __str__(self):
+        return self.phone
 
-```
-* 
-```
 
-```
-* 
-```
+class Department(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
 
-```
-* 
-```
+    def __str__(self):
+        return self.name
 
+
+class Employee(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    contact = models.OneToOneField(Contact, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, default=None)
+    compensations = models.ManyToManyField(Compensation)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+```
+* Djnago создает соединительную таблицу hr_employee_compensations. Она имеет два внешних ключа employee_id  и  compensation_id
+* внешний employee_id ключ ссылается на id таблицу hr_employee, а compensation_id внешний ключ ссылается id на hr_compensation таблицу.
+* запускаем shell_plus
+```
+python manage.py shell_plus --print-sql
+```
+* Создадим три зарплатные программы
+```
+c1 = Compensation(name='Stock')
+c1.save()
+c2 = Compensation(name='Bonuses') 
+c2.save()
+c3 = Compensation(name='Profit Sharing')  
+c3.save()
+```
+* выберем любого сотрудника
+```
+e = Employee.objects.get(id=8)
+```
+* присвоим ему пару зарплатных программ
+```
+e.compensations.add(c1)
+e.compensations.add(c2) 
+e.save()
+```
+* внутри Django вставил идентификаторы сотрудников и компенсаций в таблицу соединений - hr_employee_compensations
+* мы можем найти всех сотрудников по зарплатной программе использую set
+```
+c1.employee_set.all()
+```
+* или тоже самое, но подругому
+```
+Employee.objects.filter(compensations__id=1)
+```
+* чтобы удалить зарплатную программу у сотрудника используем remove()
+```
+e.compensations.remove(c2)
 ```
 * 
 ```

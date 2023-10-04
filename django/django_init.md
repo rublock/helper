@@ -59,11 +59,11 @@ python manage.py startapp mainapp
 ```
 * добавляем разрешаем доступ с любого хоста
 ```python
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 ```
 * проверяем работу Django на локальной машине
 ```
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 127.0.0.1:8000
 ```
 * заливаем зависимости в файл
 ```

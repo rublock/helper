@@ -75,7 +75,11 @@ DATABASES = {
     }
 }
 ```
-* чтобы подключить postgres
+### подключаем Postgres
+* проверяем если Postgres уже есть
+```
+pg_config --version
+```
 ```
 sudo apt update && sudo apt install postgresql
 ```

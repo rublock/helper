@@ -57,6 +57,10 @@ django-admin startproject config .
 ```
 python manage.py startapp mainapp
 ```
+* добавляем разрешаем доступ с любого хоста
+```python
+ALLOWED_HOSTS = ['*']
+```
 * проверяем работу Django на локальной машине
 ```
 python manage.py runserver 0.0.0.0:8000

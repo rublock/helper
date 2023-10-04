@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ```
 touch requirements.txt && pip freeze -> requirements.txt
 ```
-* в правом нижнем углу VSCode выбераем путь к интерпритатору python из нашей папки
+* указываем интерпритатор Python в IDE из нашей папки
 ```
 venv/bin/python
 ```

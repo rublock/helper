@@ -90,9 +90,13 @@ sudo apt update && sudo apt install postgresql postgresql-contrib
 ```
 pip install psycopg2-binary
 ```
-создаем БД
+заходим в коммандрую строку psql
 ```
-createdb -U postgres library
+sudo -u postgres psql
+```
+* создаем БД
+```
+CREATE DATABASE db_name;
 ```
 * изменяем настройки в config/settings.py
 ```python

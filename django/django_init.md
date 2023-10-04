@@ -116,6 +116,13 @@ INSTALLED_APPS = [
     'mainapp',
 ]
 ```
+* чтобы создались все таблицы в том числе административные нужно провести миграции
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
 * если нужен доступ в админку
 ```
 python manage.py createsuperuser

@@ -80,13 +80,17 @@ DATABASES = {
 ```
 pg_config --version
 ```
+* обновляем систему и устанавливаем Postgres
 ```
-sudo apt update && sudo apt install postgresql
+sudo apt update && sudo apt install postgresql postgresql-contrib
 ```
+* В ходе установки была создана учетную запись пользователя postgres, которая связана с используемой по умолчанию ролью postgres.
+  
 * драйвер для подключения postgres
 ```
 pip install psycopg2-binary
 ```
+создаем БД
 ```
 createdb -U postgres library
 ```

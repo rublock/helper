@@ -33,9 +33,13 @@ https://www.djangoproject.com/download/
 ```
 pip install Django==4.2.4
 ```
-* или есть файл с зависимостями
+* есть файл с зависимостями
 ```
 pip install -r requirements.txt
+```
+* если нет файла зависимостей
+```
+touch requirements.txt && pip freeze -> requirements.txt
 ```
 * в правом нижнем углу VSCode выбераем путь к интерпритатору python из нашей папки
 ```

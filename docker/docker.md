@@ -1,5 +1,23 @@
 # Docker
 
+### Установка Docker через скрипт
+
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+Executing docker install script, commit: 7cae5f8b0decc17d6571f9f52eb840fbc13b2737
+<...>
+```
+* проверка
+```
+sudo systemctl status docker
+```
+* добавляем пользователя в группу Docker чтобы не писать sudo
+```
+sudo usermod -aG docker [user_name]
+```
+
+### Работка с Docker
 
 показать все образы
 ```

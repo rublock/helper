@@ -1,5 +1,14 @@
-# venv linux
+# новый пользователь linux
 
+```
+useradd -m [user_name] -s /bin/bash -p [user_pass] -d /home/[user_name]
+```
+* перейти на пользователя
+```
+su [user_name]
+```
+
+# venv linux
 
 установка программы
 ```

@@ -15,9 +15,13 @@ sudo sh get-docker.sh
 ```
 sudo systemctl status docker
 ```
+* верисия
+```
+dockre -v
+```
 * добавляем пользователя в группу Docker чтобы не писать sudo
 ```
-sudo usermod -aG docker [user_name]
+sudo groupadd docker && sudo usermod -aG docker [user_name] && newgrp docker
 ```
 
 ### Работка с Docker
@@ -26,41 +30,33 @@ sudo usermod -aG docker [user_name]
 ```
 sudo docker images
 ```
-показать все запущенные образы
+скачать образ из репозитория
+```
+sudo docker pull [image_name]
+```
+удалить образ (перед этим нужно остановить контейнер этого образа)
+```
+sudo docker rmi [image_name]
+```
+запустить образ (сделать контейнер)
+```
+sudo docker run -p 8000:8000 --rm --name [container_name] -d [image_name]
+```
+показать все контейнеры
 ```
 sudo docker ps -a
 ```
-скачать образ
+остановить контейнер
 ```
-sudo docker pull [imagename:version]
+sudo docker stop [container_name]
 ```
-удалить образ
+удалить контейнер
 ```
-sudo docker rmi [imagename:version]
+sudo docker rm -f [container_name]
 ```
-запустить образ
+зайти в контейнер и открыть терминал
 ```
-sudo docker run [imagename:version]
-```
-запустить образ + открыть терминал
-```
-sudo docker run -it [imagename:version]
-```
-остановить образ
-```
-sudo docker stop [NAME]
-```
-удалить существующий образ образ, но не удалять сам файл образа
-```
-sudo docker rm [NAME]
-```
-запустить существующий образ
-```
-sudo docker start [NAME]
-```
-зайти в контейнер используя bash
-```
-sudo docker exec -it [NAME] bash
+docker exec -it [container_name] /bin/bash
 ```
 
 ```

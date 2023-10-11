@@ -58,15 +58,15 @@ sudo docker rm -f [container_name]
 ```
 docker exec -it [container_name] /bin/bash
 ```
-
+* логи контейнера
+```
+docker logs [container_name]
+```
+*
 ```
 
 ```
-
-```
-
-```
-
+*
 ```
 
 ```

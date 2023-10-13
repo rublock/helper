@@ -9,6 +9,10 @@ git fetch && git status
 ```
 git add . && git commit -am '' && git push
 ```
+* стянуть ветку из пулл-реквеста
+```
+git fetch origin pull/9/head:[branch_name] && git switch [branch_name]
+```
 
 * проверить есть ли ssh ключи на компьютере
 ```

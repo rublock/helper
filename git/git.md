@@ -24,20 +24,11 @@ cd ~/.ssh | ls -lah
 ssh-keygen
 ```
 
-* переходим в каталог с ssh ключами
+* копируем ключь и вставляем на github
 ```
-cd .ssh/
-```
-
-копируем ключ и вставляем на GitHub
-```
-cat ./id_rsa.pub
+cd .ssh/ && cat ./id_rsa.pub
 ```
 
-* переходим на github.com и добавляем ssh ключ
-```
-github.com
-```
 
 * скопировать репозиторий с Git через ssh
 ```

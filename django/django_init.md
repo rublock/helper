@@ -33,13 +33,13 @@ https://www.djangoproject.com/download/
 ```
 pip install Django==4.2.4
 ```
-* есть файл с зависимостями
-```
-touch requirements.txt && pip install -r requirements.txt
-```
 * если нет файла зависимостей
 ```
 touch requirements.txt && pip freeze -> requirements.txt
+```
+* если уже есть файл с зависимостями
+```
+pip install -r requirements.txt
 ```
 * указываем интерпритатор Python в IDE из нашей папки
 ```

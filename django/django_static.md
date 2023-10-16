@@ -5,9 +5,9 @@
 ```
 cd mainapp && mkdir static
 ```
-* 
-```
-
+* config/settings.py
+```python
+STATIC_URL = '/static/'
 ```
 * 
 ```

@@ -35,7 +35,7 @@ pip install Django==4.2.4
 ```
 * есть файл с зависимостями
 ```
-pip install -r requirements.txt
+touch requirements.txt && pip install -r requirements.txt
 ```
 * если нет файла зависимостей
 ```

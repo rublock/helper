@@ -1,4 +1,4 @@
-* в шабло перед тэгом <!DOCTYPE html>
+* в шаблон перед тэгом <!DOCTYPE html>
 ```
 {% load static %}
 ```

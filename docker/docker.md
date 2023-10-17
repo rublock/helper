@@ -62,17 +62,9 @@ docker exec -it [container_name] /bin/bash
 ```
 docker logs [container_name]
 ```
-* остановить все контейнеры
+* удалить все в докере
 ```
-docker stop $(docker ps -a -q)
-```
-* удалить все контейнеры
-```
-docker rm $(docker ps -a -q)
-```
-* удалить все образы
-```
-docker rmi $(docker images -q)
+docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
 ```
 *
 ```

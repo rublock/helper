@@ -23,6 +23,16 @@ sudo -u postgres psql
 ```
 CREATE DATABASE db_name;
 ```
+* удалить БД
+```
+DROP DATABASE db_name;
+```
+* если появляется ошибка ERROR:  database "library" is being accessed by other users
+```sql
+SELECT pg_terminate_backend (pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'db_name' AND pid <> pg_backend_pid();
+```
 * зайти под БД
 ```
 \c db_name

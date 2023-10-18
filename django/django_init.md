@@ -7,7 +7,7 @@ git clone
 ```
 * устанавливаем pip
 ```
-sudo -H pip3 install --upgrade pip
+sudo apt install python3-pip
 ```
 * устанавливаем вирутальное окружение virtualenv
 ```

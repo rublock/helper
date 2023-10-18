@@ -1,10 +1,12 @@
 ## Git
 
+``` 
+sudo apt install git
+```
 * запросить данные с удаленного репозитория и сравнить
 ```
 git fetch && git status
 ```
-
 * добавить все файлы и закомитить и запушить
 ```
 git add . && git commit -am '' && git push

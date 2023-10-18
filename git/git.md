@@ -18,7 +18,7 @@ git fetch origin pull/9/head:[branch_name] && git switch [branch_name]
 
 * проверить есть ли ssh ключи на компьютере
 ```
-cd ~/.ssh | ls -lah
+cd .ssh && cat ./id_rsa.pub
 ```
 
 * сгенерировать ssh ключ + копируем ключь и вставляем на github

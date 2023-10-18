@@ -21,14 +21,9 @@ git fetch origin pull/9/head:[branch_name] && git switch [branch_name]
 cd ~/.ssh | ls -lah
 ```
 
-* сгенерировать ssh ключ
+* сгенерировать ssh ключ + копируем ключь и вставляем на github
 ```
-ssh-keygen
-```
-
-* копируем ключь и вставляем на github
-```
-cd .ssh/ && cat ./id_rsa.pub
+ssh-keygen && cd .ssh/ && cat ./id_rsa.pub
 ```
 
 

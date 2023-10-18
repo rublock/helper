@@ -123,9 +123,12 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
-* если нужен доступ в админку
+* создаем суперпользователя
 ```
-python manage.py createsuperuser
+python manage.py shell
+```
+```
+from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='adin').exists() or User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 ```
 * фиксируем имзенения на github
 ```

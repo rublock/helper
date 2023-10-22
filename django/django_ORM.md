@@ -43,7 +43,7 @@ python manage.py flush
 ```
 * передать данные из view в БД
 ```python
-from mainapp.models import Book
+from mainapp.models import Client
 
 def orm(request):
     data = Client(name='some_data')
@@ -53,7 +53,7 @@ def orm(request):
 ```
 * получение данных из БД
 ```python
-from mainapp.models import Book
+from mainapp.models import Client
 
 def get_data_orm(request):
     data = Client.objects.all()

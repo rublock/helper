@@ -48,6 +48,29 @@ urlpatterns = [
     path('', include("mainapp.urls")),
 ]
 ```
+### блоки content
+* mainapp/templates/mainapp/base.html
+```
+<header>
+</header>
+{% block content %} {% endblock content %}
+```
+```
+cd mainapp/templates/mainapp && touch home_page.html
+```
+```
+{% extends "base.html" %}
+{% block content %}
+    <h1>Главная страница</h1>
+{% endblock content %}
+```
+
+
+
+
+
+
+
 * забираем данные от клиента через параметр
 ```
 http://localhost:8000/?data=some_data

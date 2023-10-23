@@ -58,7 +58,7 @@ from django.shortcuts import render
 def home_page(request):
     data = request.GET.get("data")
     print(data) #some_data
-    return render(request, "mainapp/home_page.html")
+    return render(request, "mainapp/base_page.html")
 ```
 * забирем числовое значение через http адрес
 ```
@@ -85,7 +85,7 @@ def home_page(request):
     context = {
         "data": data,
     }
-    return render(request, "mainapp/home_page.html", context)
+    return render(request, "mainapp/base_page.html", context)
 ```
 * в шаблоне
 ```html
@@ -144,7 +144,7 @@ def pagination(request):
     context = {
         "page": page,
     }
-    return render(request, 'mainapp/home_page.html', context)
+    return render(request, 'mainapp/base_page.html', context)
 ```
 * mainapp/urls.py
 ```python

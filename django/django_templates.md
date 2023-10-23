@@ -48,7 +48,7 @@ urlpatterns = [
     path('', include("mainapp.urls")),
 ]
 ```
-### блоки content
+### расширение шаблонов (блок content)
 * mainapp/templates/mainapp/base.html
 ```
 <header>
@@ -63,6 +63,12 @@ cd mainapp/templates/mainapp && touch home_page.html
 {% block content %}
     <h1>Главная страница</h1>
 {% endblock content %}
+```
+```python
+TEMPLATES = [
+    {
+        'DIRS': [os.path.join(BASE_DIR, 'mainapp/templates/mainapp'),],
+    }
 ```
 
 

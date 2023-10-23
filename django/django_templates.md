@@ -1,6 +1,6 @@
 # Шаблоны Django
 ```
-cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch home_page.html
+cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch base.html
 ```
 ```html
 <!DOCTYPE html>
@@ -19,8 +19,8 @@ cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && 
 ```python
 from django.shortcuts import render
 
-def home_page(request):
-    return render(request, "mainapp/home_page.html")
+def base_page(request):
+    return render(request, "mainapp/base.html")
 ```
 ```
 cd mainapp && touch urls.py
@@ -34,7 +34,7 @@ from mainapp.apps import MainappConfig
 app_name = MainappConfig.name
 
 urlpatterns = [
-    path("", views.home_page, name="home_page"),
+    path("", views.base_page, name="base_page"),
 ]
 ```
 * в config/urls.py

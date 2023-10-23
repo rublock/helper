@@ -1,14 +1,31 @@
-# новый пользователь linux
+### новый пользователь
 
 ```
-useradd -m [user_name] -s /bin/bash -p [user_pass] -d /home/[user_name]
+sudo useradd -s /bin/bash [user_name]
+```
+* удалить пользователя
+```
+userdel -f [user_name]
+pkill  [process_id]
+```
+* установить пароль
+```
+sudo passwd [user_name]
 ```
 * перейти на пользователя
 ```
 su [user_name]
 ```
+* посмотреть всех пользователей
+```
+w
+```
+### Мониторинг
 
-# venv linux
+### venv
+```
+top
+```
 
 установка программы
 ```
@@ -36,8 +53,7 @@ deactivate
 ```
 
 
-# RAR linux
-
+### RAR
 
 распаковать архив в одноименную папку
 ```

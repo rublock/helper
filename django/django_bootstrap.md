@@ -1,14 +1,17 @@
-* 
+### Подключение Bootstrap 5 
 ```
-
+pip install django-bootstrap-v5
 ```
-* 
+* INSTALLED_APPS
 ```
-
+'bootstrap5',
 ```
-* 
 ```
-
+<head>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
 ```
 * 
 ```

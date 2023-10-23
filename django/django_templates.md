@@ -70,14 +70,8 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'mainapp/templates/mainapp'),],
     }
 ```
-
-
-
-
-
-
-
-* забираем данные от клиента через параметр
+### работа с данными в шаблоне
+*забираем данные от клиента через параметр
 ```
 http://localhost:8000/?data=some_data
 ```

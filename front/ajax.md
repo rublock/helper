@@ -1,6 +1,6 @@
 * Django csrf token для ajax
 ```javascript
-let button = document.querySelector('.delete');
+let button = document.querySelector('.button');
 
 button.addEventListener('click', function (e) {
 

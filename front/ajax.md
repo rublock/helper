@@ -7,7 +7,7 @@ button.addEventListener('click', function (e) {
     var csrftoken = getCookie('csrftoken');
     
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://127.0.0.1:8000/order/' + id, true);
+    xhr.open("POST", 'http://127.0.0.1:8000/order/', true);
     
     xhr.setRequestHeader('X-CSRFToken', csrftoken);
     xhr.send('some_data')

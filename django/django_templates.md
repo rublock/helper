@@ -36,6 +36,12 @@ app_name = MainappConfig.name
 urlpatterns = [
     path("", views.base_page, name="base_page"),
 ]
+
+other_urlpatterns = [
+    path("", views.base_page2, name="base_page2"),
+]
+
+urlpatterns += other_urlpatterns
 ```
 * в config/urls.py
 ```python

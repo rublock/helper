@@ -47,7 +47,7 @@ def new_order(request):
 pip install django-widget-tweaks
 ```
 * в шаблоне добавляем форму, 
-```
+```html
 <form class="form new_order" method="post">
       {% csrf_token %}
       <label>{{ new_order_form.client.label_tag }}</label>

@@ -130,6 +130,12 @@ python manage.py shell
 ```
 from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='adin').exists() or User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 ```
+* удалить суперпользователя
+```python
+from django.contrib.auth import get_user_model
+model = get_user_model()
+model.objects.get(username="superjoe", is_superuser=True).delete()
+```
 * фиксируем имзенения на github
 ```
 git add . && git commit -am "Initial commit" && git push

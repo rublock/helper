@@ -70,6 +70,7 @@ cd mainapp/templates/mainapp && touch home_page.html
 ```
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
     <h1>Главная страница</h1>
 {% endblock content %}
 ```

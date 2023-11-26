@@ -55,7 +55,10 @@ urlpatterns = [
 ]
 ```
 ### расширение шаблонов (блок content)
-* mainapp/templates/mainapp/base.html
+* создаем базовый шаблон mainapp/templates/mainapp/base.html
+```
+cd mainapp/templates/mainapp && touch base.html
+```
 ```
 <header>
 </header>

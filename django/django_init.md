@@ -136,7 +136,7 @@ User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 ```python
 from django.contrib.auth import get_user_model
 model = get_user_model()
-model.objects.get(username="superjoe", is_superuser=True).delete()
+model.objects.get(username="admin", is_superuser=True).delete()
 ```
 * фиксируем имзенения на github
 ```

@@ -17,7 +17,7 @@ sudo systemctl status docker
 ```
 * верисия
 ```
-dockre -v
+docker -v
 ```
 * добавляем пользователя в группу Docker чтобы не писать sudo
 ```

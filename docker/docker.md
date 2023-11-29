@@ -38,7 +38,7 @@ sudo docker pull [image_name]
 ```
 sudo docker rmi [image_name]
 ```
-запустить образ (создать контейнер)
+запустить образ (создать контейнер) -d запустить в фоне
 ```
 sudo docker run -p 8000:8000 --rm --name [container_name] -d [image_name]
 ```
@@ -50,6 +50,10 @@ sudo docker ps -a
 ```
 sudo docker stop [container_name]
 ```
+перезагрузить контейнер
+```
+sudo docker restart [options] [container_name]
+```
 удалить контейнер
 ```
 sudo docker rm -f [container_name]
@@ -57,6 +61,10 @@ sudo docker rm -f [container_name]
 зайти в контейнер и открыть терминал
 ```
 docker exec -it [container_name] /bin/bash
+```
+* открыть интерактивную сессию в контейнере
+```
+docker attach [options] [container_name]
 ```
 * логи контейнера
 ```

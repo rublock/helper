@@ -38,7 +38,7 @@ sudo docker pull [image_name]
 ```
 sudo docker rmi [image_name]
 ```
-запустить образ (сделать контейнер)
+запустить образ (создать контейнер)
 ```
 sudo docker run -p 8000:8000 --rm --name [container_name] -d [image_name]
 ```

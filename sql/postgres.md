@@ -6,6 +6,10 @@ sudo apt update
 ```
 sudo apt install postgresql
 ```
+проверить версию
+```
+sudo -u postgres psql --version
+```
 * БД создается с дефолтным пользователем postgres
 * запускаем консоль от имени пользователя postgres
 ```

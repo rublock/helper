@@ -11,6 +11,14 @@ sudo apt install postgresql
 sudo -u postgres psql --version
 ```
 * БД создается с дефолтным пользователем postgres
+* чтобы изменить пароль
+```
+ALTER ROLE postgres WITH PASSWORD '123';
+```
+* или в psql
+```
+\password
+```
 * запускаем консоль от имени пользователя postgres
 ```
 sudo -u postgres psql

@@ -1,30 +1,32 @@
-* 
-```
+### Docker-compose
 
+* собрать проект
 ```
-* 
+docker-compose build
 ```
-
+* запустить проект
 ```
-* 
+docker-compose up -d
 ```
-
+* остановить проект
 ```
-* 
+docker-compose down
 ```
-
+* посмотреть логи сервиса
 ```
-* 
+docker-compose logs -f [service_name]
 ```
-
+* вывести список контейнеров
 ```
-* 
+docker-compose ps
 ```
-
+* выполнить комманду в контейнере
 ```
-* 
+docker-compose exec [service name] [command]
 ```
-
+* вывести список образов
+```
+docker-compose images
 ```
 * 
 ```

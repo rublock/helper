@@ -121,33 +121,61 @@ docker-compose build
 ```
 docker-compose up -d
 ```
-* 
+### Подключение PostgreSQL
+* добавим в docker-compose.yml блок db с учетными данными
+* если не описывать volume для контейнера с базой, каждое пересоздание контейнера приведет к уничтожению базы и данных. docker-том postgres_data будет хранить данные на случай пересоздания контейнера
 ```
+  db:
+      image: postgres:[version] - заменить
+      volumes:
+        - postgres_data:/var/lib/postgresql/data/
+      environment:
+        - POSTGRES_USER=book_django
+        - POSTGRES_PASSWORD=pass_book_django
+        - POSTGRES_DB=book_django
 
+volumes:
+  postgres_data:
 ```
-* 
+* в файле .env добавляем
 ```
-
+SQL_ENGINE=django.db.backends.postgresql
+SQL_DATABASE=book_django
+SQL_USER=book_django
+SQL_PASSWORD=pass_book_django
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
 ```
-* 
+* в файле setting.py меняем настройки БД
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": str(os.getenv("SQL_ENGINE")),
+        "NAME": str(os.getenv("SQL_DATABASE")),
+        "USER": str(os.getenv("SQL_USER")),
+        "PASSWORD": str(os.getenv("SQL_PASSWORD")),
+        "HOST": str(os.getenv("SQL_HOST")),
+        "PORT": str(os.getenv("SQL_PORT")),
+    }
+}
 ```
-
+* устанавливаем зависимости для работы с PostgreSQL
 ```
-* 
+psycopg==3.1.12
+psycopg-binary==3.1.12
 ```
-
+* запускаем контейнеры еще раз
 ```
-* 
+docker-compose up -d --build
 ```
-
+* запускаем миграции
 ```
-* 
+docker-compose exec web python manage.py migrate --noinput
 ```
-
+* можно зайти в psql и проверить БД
 ```
-* 
-```
-
+docker-compose exec db psql --username=book_django --dbname=book_django
 ```
 * 
 ```

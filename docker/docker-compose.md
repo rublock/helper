@@ -1,5 +1,12 @@
 ### Docker-compose
-
+* скачиваем docker-compose
+```
+sudo apt-get install ./docker-desktop-[version]-amd64.deb
+```
+* устанавливаем docker-compose
+```
+sudo apt-get install ./docker-desktop-[version]-amd64.deb
+```
 * версия
 ```
 docker --version

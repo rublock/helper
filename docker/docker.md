@@ -75,7 +75,7 @@ docker logs [container_name]
 docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
 ```
 * базовая инструкция для Django проекта
-```docker
+```
 # pull the official base image
 FROM python:3.12.0-alpine
 

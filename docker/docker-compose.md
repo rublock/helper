@@ -33,52 +33,93 @@ docker-compose exec [service name] [command]
 docker-compose images
 ```
 ### Подготовка глобальных переменных
+* обновить список зависимостей requirements.txt
 ```
+python-dotenv==1.0.0
+```
+* отредактировать файл настроек settings.py
+```
+from dotenv import load_dotenv
+import os
+load_dotenv()
+```
+* Далее изменим нужные переменные:
+```python
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
-```
-* 
-```
+DEBUG = str(os.getenv('DEBUG'))
 
-```
-* 
-```
+ALLOWED_HOSTS = str(os.getenv('DJANGO_ALLOWED_HOSTS')).split(" ")
 
-```
-* 
-```
+CACHES = {
+    'default': {
+        'BACKEND': str(os.getenv('CACHES_BACKEND')),
+        'LOCATION': str(os.getenv('CACHES_LOCATION')),
+    }
+}
 
-```
-* 
-```
+INTERNAL_IPS = str(os.getenv('INTERNAL_IPS')).split(" ")
 
+CSRF_TRUSTED_ORIGINS = str(os.getenv('CSRF_TRUSTED_ORIGINS')).split(" ")
 ```
-* 
+* создадим папку app в нашем проекте и перенесем туда весь проект кроме .env venv docker-compose.yml
 ```
+mkdir app
+```
+* создадим файл .env в корне проекта
+```
+touch .env
+```
+* заполним файл .env
+```
+DEBUG = True
+SECRET_KEY = 'django-insecure-xxxxxxxxxxxx'
+DJANGO_ALLOWED_HOSTS = '127.0.0.1'
+CSRF_TRUSTED_ORIGINS = 'http://127.0.0.1'
+CACHES_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
+CACHES_LOCATION = 'unique-snowflake'
+INTERNAL_IPS = '127.0.0.1'
+```
+* создадим файл в конре проекта docker-compose.yml
+```
+touch docker-compose.yml
+```
+* заполним файл docker-compose.yml
+```
+version: '3.8'
 
+services:
+  web:
+    # Берем Dockerfile из каталога app
+    build: ./app
+    # Запускаем тестовый сервер
+    command: python manage.py runserver 0.0.0.0:8000
+    # куда будут помещены данные из каталога app
+    volumes:
+      - ./app/:/usr/src/app/
+    # Открываем порт 8000 внутри и снаружи
+    ports:
+      - 8000:8000
+    # Файл содержащий переменные для контейнера
+    env_file:
+      - ./.env
 ```
-* 
+* создадим файл .dockerignore в корне проекта
 ```
-
+touch .dockerignore
 ```
-* 
+* заполним файл .dockerignore
 ```
-
+venv
+.idea
 ```
-* 
+* создаем образ
 ```
-
+docker-compose build
 ```
-* 
+* запускаем контейнер
 ```
-
-```
-* 
-```
-
-```
-* 
-```
-
+docker-compose up -d
 ```
 * 
 ```

@@ -1,5 +1,9 @@
 ### Docker-compose
 
+* версия
+```
+docker --version
+```
 * собрать проект
 ```
 docker-compose build
@@ -28,7 +32,7 @@ docker-compose exec [service name] [command]
 ```
 docker-compose images
 ```
-* 
+### Подготовка глобальных переменных
 ```
 
 ```

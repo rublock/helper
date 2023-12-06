@@ -48,9 +48,16 @@ path("<int:page>/", views.HomePageView.as_view(), name="home_page")
 ```
 href="{% url 'mainapp:home_page' page=1 %}"
 ```
-* 
-```
+* получаем данные из БД и передаем в шаблон
+```python
+from mainapp import models as mainapp_models
 
+class HomePageView(TemplateView):
+    template_name = "mainapp/home_page.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["data"] = mainapp_models.Home.objects.all()
+        return context
 ```
 * 
 ```

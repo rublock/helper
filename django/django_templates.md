@@ -224,21 +224,41 @@ urlpatterns = [
     <a href='?page={{ page.next_page_number }}'> >> </a>
 {% endif %}
 ```
-* 
+### Шаблонный фильтры
+* создадим шаблонный фильтр для вставки e-mail адреса
 ```
+mkdir mainapp/templatetags/ && touch email_to_link.py
+```
+```python
+from django import template
+from django.utils.safestring import 
 
-```
-* 
-```
 
+register = template.Library()
+@register.filter
+def email_to_link(value):
+	return mark_safe(f"<a href='mailto:{value}'>{value}</a>")
 ```
-* 
 ```
+register = template.Library() создает объект реестра тегов и фильтров, через который они будут
+проходить регистрацию для их применения в шаблоне
+●
+@register.filter — декоратор регистрации шаблонного тега\фильтра. У него есть опциональный
+именованный параметр name, который позволяет задать другое имя. По умолчанию
+тег\фильтр берёт имя функции, к которой применен декоратор
+●
+def email_to_link(value) — определение функции. Имеет обязательный позиционный параметр,
+в который помещается значение объекта, к которому применен фильтр.
+●
+return mark_safe(f"<a href='mailto:{value}'>{value}</a>") - функция mark_safe помечает
+содержимое строки как безопасное для использования в верстке. В ином случае вместо
+многих символов будет использована их версия в виде символов-мнемоник.
+```
+* в шаблоне
+```
+{% load email_to_link %}
 
-```
-* 
-```
-
+<li><strong>{{ 'example@mail.ru'|email_to_link }}</strong></li>
 ```
 * 
 ```

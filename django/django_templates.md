@@ -231,7 +231,7 @@ mkdir mainapp/templatetags/ && cd mainapp/templatetags/ && touch email_to_link.p
 ```
 ```python
 from django import template
-from django.utils.safestring import 
+from django.utils.safestring import mark_safe
 
 
 register = template.Library()

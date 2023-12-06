@@ -11,7 +11,7 @@ class MainPageView(TemplateView):
     template_name = "mainapp/index.html"
 ```
 * передаем данные в шаблон
-```
+```python
 class HomePageView(TemplateView):
     template_name = "mainapp/home_page.html"
 
@@ -23,7 +23,7 @@ class HomePageView(TemplateView):
         return context
 ```
 * в mainapp/urls.py
-```
+```python
 path("", views.HomePageView.as_view(), name="home_page"),
 ```
 * в шаблоне

@@ -34,11 +34,11 @@ from mainapp.apps import MainappConfig
 app_name = MainappConfig.name
 
 urlpatterns = [
-    path("", views.base_page, name="base_page"),
+    path("", views.base_page),
 ]
 
 other_urlpatterns = [
-    path("", views.base_page2, name="base_page2"),
+    path("", views.base_page2),
 ]
 
 urlpatterns += other_urlpatterns
@@ -71,7 +71,23 @@ urlpatterns = [
     path('', include("mainapp.urls")),
 ]
 ```
-### расширение шаблонов (блок content)
+### Маршрутизация в шаблонах
+* задаем имена адресов в urls.py
+```python
+from django.urls import path, include
+from blog import views
+
+product_patterns = [
+    path("", views.products, name='products'),
+    path("top/", views.top, name='top'),
+]
+```
+* в шаблонах вместо ссылки прописываем
+```python
+{% url 'mainapp:products' %}
+{% url 'mainapp:top' %}
+```
+### Расширение шаблонов (блок content)
 * создаем базовый шаблон mainapp/templates/mainapp/base.html
 ```
 cd mainapp/templates/mainapp && touch base.html

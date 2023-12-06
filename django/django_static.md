@@ -3,7 +3,7 @@
 {% load static %}
 ```
 ```
-cd mainapp && mkdir static
+mkdir static
 ```
 * config/settings.py
 ```python

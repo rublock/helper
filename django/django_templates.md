@@ -43,6 +43,23 @@ other_urlpatterns = [
 
 urlpatterns += other_urlpatterns
 ```
+* или через функцию include
+```python
+from django.urls import path, include
+from blog import views
+
+product_patterns = [
+    path("", views.products),
+    path("top/", views.top),
+]
+
+urlpatterns = [
+    path("", views.index),
+    path("products/", include(product_patterns)),
+]
+
+#http://127.0.0.1:8000/products/top/
+```
 * в config/urls.py
 ```python
 from django.contrib import admin

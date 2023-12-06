@@ -259,9 +259,22 @@ Employee.objects.filter(compensations__id=1)
 ```
 e.compensations.remove(c2)
 ```
-* 
-```
+### Переопределение стандартного менеджера моделей
+```python
+class CoursesManager(models.Manager): #новый менеджер модели с фильтрацией по удаленным
+    def get_queryset(self):
+        return super().get_queryset().filter(deleted=True)
 
+
+class Courses(models.Model):
+    objects = CoursesManager() #применение менеджера модели
+
+    name = models.CharField(max_length=256, verbose_name="Name")
+    deleted = models.BooleanField(default=False)
+
+    def delete(self, *args):
+        self.deleted = True
+        self.save()
 ```
 * 
 ```

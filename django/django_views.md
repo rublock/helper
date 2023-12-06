@@ -60,17 +60,28 @@ class HomePageView(TemplateView):
         context["data"] = mainapp_models.Home.objects.all()
         return context
 ```
-* 
-```
+* получаем данные из адресной строки
+```python
+from mainapp import models as mainapp_models
+
+class HomePageDetailView(TemplateView):
+    template_name = "mainapp/home_page_detail.html"
+
+    def get_context_data(self, pk=None, **kwargs):
+        context = super().get_context_data(pk=pk, **kwargs)
+        context["data"] = get_object_or_404(mainapp_models.HomeDetail, pk=pk)
+        return context
 
 ```
-* 
+* в mainapp/urls.py
+```python
+path("news/<int:pk>/", views.HomePageDetailView.as_view(), name="home_page_detail"),
 ```
-
+* в шаблоне 
 ```
-* 
-```
-
+{% for i in data %}
+    <a href="{% url 'mainapp:home_page_detail' pk=i.pk %}" class="card-link">Подробнее</a>
+{% endfor %}
 ```
 * 
 ```

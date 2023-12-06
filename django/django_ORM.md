@@ -260,10 +260,11 @@ Employee.objects.filter(compensations__id=1)
 e.compensations.remove(c2)
 ```
 ### Переопределение стандартного менеджера моделей
+* объекты помеченные как deleted=False вообще не будет участвовать в выборках
 ```python
 class CoursesManager(models.Manager): #новый менеджер модели с фильтрацией по удаленным
     def get_queryset(self):
-        return super().get_queryset().filter(deleted=True)
+        return super().get_queryset().filter(deleted=False)
 
 
 class Courses(models.Model):

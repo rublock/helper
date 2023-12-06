@@ -54,6 +54,7 @@ from mainapp import models as mainapp_models
 
 class HomePageView(TemplateView):
     template_name = "mainapp/home_page.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["data"] = mainapp_models.Home.objects.all()

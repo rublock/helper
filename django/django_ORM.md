@@ -40,7 +40,7 @@ python manage.py migrate mainapp zero
 ```
 python manage.py flush
 ```
-```
+
 * передать данные из view в БД
 ```python
 from mainapp.models import Client

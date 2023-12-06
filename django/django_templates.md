@@ -227,7 +227,7 @@ urlpatterns = [
 ### Шаблонный фильтры
 * создадим шаблонный фильтр для вставки e-mail адреса
 ```
-mkdir mainapp/templatetags/ && touch email_to_link.py
+mkdir mainapp/templatetags/ && cd mainapp/templatetags/ && touch email_to_link.py
 ```
 ```python
 from django import template

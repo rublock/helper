@@ -224,7 +224,7 @@ urlpatterns = [
     <a href='?page={{ page.next_page_number }}'> >> </a>
 {% endif %}
 ```
-### Шаблонный фильтры
+### Шаблонные фильтры
 * создадим шаблонный фильтр для вставки e-mail адреса
 ```
 mkdir mainapp/templatetags/ && cd mainapp/templatetags/ && touch email_to_link.py

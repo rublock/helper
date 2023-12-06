@@ -113,9 +113,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'mainapp/templates/mainapp'),],
     }
 ```
-### Передача параметров через адрес
-
-### Работа с данными в шаблоне
+### Работа с данными в шаблоне через Function Based View
 * забираем данные от клиента через параметр
 ```
 http://localhost:8000/?data=some_data
@@ -180,7 +178,7 @@ hello world
 
 some_data
 ```
-* цикл в шаблоне
+### Циклы в шаблонах
 ```html
 <ul>
     {% for i in data %}

@@ -8,7 +8,10 @@ mkdir static
 * config/settings.py
 ```python
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('static',)
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 ```
 ```
 <head>

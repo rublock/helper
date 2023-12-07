@@ -171,22 +171,40 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
-* config/settings.py
+* config/settings.py меняем в найтройках стандартную модель аутентификации пользователя
 ```python
 AUTH_USER_MODEL = "authapp.CustomUser"
 ```
-* config/settings.py
+* config/settings.py перенаправления пользователя при входе и выходе
 ```python
 LOGIN_REDIRECT_URL = "mainapp:main_page"
 LOGOUT_REDIRECT_URL = "mainapp:main_page"
 ```
-* config/settings.py
+* config/settings.py фреймворк сообщений, сообщения для пользователя в момент формирования ответа с сервера
 ```python
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 ```
-* config/settings.py
-```
-
+* config/settings.py дабавляем контекстный процессор для медиафайлов
+```python
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.template.context_processors.media", #new
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "mainapp.context_processors.example.simple_context_processor",
+            ],
+        },
+    },
+]
 ```
 * 
 ```

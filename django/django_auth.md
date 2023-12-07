@@ -26,6 +26,19 @@ John и john, разные.
 ```
 python manage.py startapp authapp
 ```
+* config/settings.py
+```
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "mainapp",
+    "authapp", #new
+]
+```
 * переопределяем стандартную модель пользователя
 ```python
 from pathlib import Path

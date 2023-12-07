@@ -24,7 +24,7 @@ STATICFILES_DIRS = [
 </body>
 ```
 * медиа файлы для загрузки пользователем (аватраки и т.д.)
-```
+```python
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"

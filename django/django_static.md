@@ -23,9 +23,11 @@ STATICFILES_DIRS = [
     <script src="{% static 'js/app.js' %}"></script>
 </body>
 ```
-* 
+* медиа файлы для загрузки пользователем (аватраки и т.д.)
 ```
+MEDIA_URL = "/media/"
 
+MEDIA_ROOT = BASE_DIR / "media"
 ```
 * 
 ```

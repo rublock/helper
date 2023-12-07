@@ -172,16 +172,16 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 * config/settings.py
-```
+```python
 AUTH_USER_MODEL = "authapp.CustomUser"
 ```
 * config/settings.py
-```
+```python
 LOGIN_REDIRECT_URL = "mainapp:main_page"
 LOGOUT_REDIRECT_URL = "mainapp:main_page"
 ```
 * config/settings.py
-```
+```python
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 ```
 * config/settings.py

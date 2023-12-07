@@ -180,10 +180,6 @@ AUTH_USER_MODEL = "authapp.CustomUser"
 LOGIN_REDIRECT_URL = "mainapp:main_page"
 LOGOUT_REDIRECT_URL = "mainapp:main_page"
 ```
-* config/settings.py фреймворк сообщений, сообщения для пользователя в момент формирования ответа с сервера
-```python
-MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
-```
 * config/settings.py дабавляем контекстный процессор для медиафайлов
 ```python
 TEMPLATES = [
@@ -199,7 +195,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.template.context_processors.media", #new
                 "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
                 "mainapp.context_processors.example.simple_context_processor",
             ],
         },

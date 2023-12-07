@@ -113,10 +113,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = _("user")
         verbose_name_plural = _("users")
 
+    # метод для нормализации e-mail
     def clean(self):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
+    # полное имя пользователя имя, фамилия через пробел
     def get_full_name(self):
         """
         Return the first_name plus the last_name, with a space in between.
@@ -124,10 +126,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         full_name = "%s %s" % (self.first_name, self.last_name)
         return full_name.strip()
 
+    # только имя
     def get_short_name(self):
         """Return the short name for the user."""
         return self.first_name
 
+    # отправить пользователю письмо по e-mail
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
@@ -167,19 +171,20 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
-* 
+* config/settings.py
 ```
-
+AUTH_USER_MODEL = "authapp.CustomUser"
 ```
-* 
+* config/settings.py
 ```
-
+LOGIN_REDIRECT_URL = "mainapp:main_page"
+LOGOUT_REDIRECT_URL = "mainapp:main_page"
 ```
-* 
+* config/settings.py
 ```
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 ```
-* 
+* config/settings.py
 ```
 
 ```

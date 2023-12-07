@@ -27,7 +27,7 @@ John и john, разные.
 python manage.py startapp authapp
 ```
 * config/settings.py
-```
+```python
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",

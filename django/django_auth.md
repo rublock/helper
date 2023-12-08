@@ -106,12 +106,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_("date joined"), auto_now_add=True)
 
+    #стандатный менеджер модели, для модели пользователя
     objects = UserManager()
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email"]
 
+    #как мы будем видеть поля в админке
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")

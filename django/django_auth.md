@@ -390,7 +390,7 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 
 </html>
 ```
-* touch templates/includes/messages.html
+* touch templates/includes/messages.html всплывающие сообщения
 ```
 <div class="position-absolute w-100" style="z-index: 1;">
     <div aria-live="polite" aria-atomic="true" class="m-2">
@@ -434,8 +434,8 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
     </div>
   </div>
 ```
-* templates/base.html
-```
+* templates/base.html добавляем блок {% block js %} для интерактивного вывода сообщений
+```html
 {% load static %}
 
 <!doctype html>
@@ -557,9 +557,6 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 
   <!-- /Footer -->
 
-
-
-
   <!-- JavaScript section -->
   <!-- Bootstrap -->
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
@@ -590,21 +587,144 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 
 </html>
 ```
-* 
+* страница выхода
+* При выходе пользователь переходит по адресу, указанному в настройках переменной LOGOUT_REDIRECT_URL.
+* authapp/views.py добавляем вниз следующий код
 ```
+class CustomLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        messages.add_message(self.request, messages.INFO, _("See you later!"))
+        return super().dispatch(request, *args, **kwargs)
+```
+* страница регистрации нового пользователя
+```
+touch authapp/templates/registration/register.html
+```
+```
+{% extends 'base.html' %}
 
-```
-* 
-```
+{% block content %}
+<div class="row justify-content-center my-2">
+  <div class="col-lg-6">
+    <h3>Регистрация нового пользователя</h3>
+    <form method="post" class="mt-2" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div id="div_id_username" class="form-group"> <label for="id_username"
+          class=" requiredField">
+          Username<span class="asteriskField">*</span> </label>
+        <div class=""> <input type="text" name="username" maxlength="150"
+            class="textinput textInput form-control" required=""
+            id="id_username"> <small id="hint_id_username"
+            class="form-text text-muted">Required. 150 characters or fewer.
+            Letters, digits and @/./+/-/_ only.</small> </div>
+      </div>
+      <div id="div_id_password1" class="form-group"> <label for="id_password1"
+          class=" requiredField">
+          Password<span class="asteriskField">*</span> </label>
+        <div class=""> <input type="password" name="password1"
+            autocomplete="new-password" class="textinput textInput form-control"
+            required="" id="id_password1"> <small id="hint_id_password1"
+            class="form-text text-muted">
+            <ul>
+              <li>Your password can’t be too similar to your other personal
+                information.</li>
+              <li>Your password must contain at least 8 characters.</li>
+              <li>Your password can’t be a commonly used password.</li>
+              <li>Your password can’t be entirely numeric.</li>
+            </ul>
+          </small> </div>
+      </div>
+      <div id="div_id_password2" class="form-group"> <label for="id_password2"
+          class=" requiredField">
+          Password confirmation<span class="asteriskField">*</span> </label>
+        <div class=""> <input type="password" name="password2"
+            autocomplete="new-password" class="textinput textInput form-control"
+            required="" id="id_password2"> <small id="hint_id_password2"
+            class="form-text text-muted">Enter the same password as before, for
+            verification.</small> </div>
+      </div>
+      <div id="div_id_first_name" class="form-group"> <label for="id_first_name"
+          class="">
+          First name
+        </label>
+        <div class=""> <input type="text" name="first_name" maxlength="150"
+            class="textinput textInput form-control" id="id_first_name"> </div>
+      </div>
+      <div id="div_id_last_name" class="form-group"> <label for="id_last_name"
+          class="">
+          Last name
+        </label>
+        <div class=""> <input type="text" name="last_name" maxlength="150"
+            class="textinput textInput form-control" id="id_last_name"> </div>
+      </div>
+      <div id="div_id_age" class="form-group"> <label for="id_age" class="">
+          Age
+        </label>
+        <div class=""> <input type="number" name="age" min="0"
+            class="numberinput form-control" id="id_age"> </div>
+      </div>
+      <div id="div_id_avatar" class="form-group"> <label for="id_avatar"
+          class="">
+          Avatar
+        </label>
+        <div class=""> <input type="file" name="avatar" accept="image/*"
+            class="clearablefileinput form-control-file" id="id_avatar"> </div>
+      </div>
+      <div id="div_id_email" class="form-group"> <label for="id_email"
+          class=" requiredField">
+          Email address<span class="asteriskField">*</span> </label>
+        <div class=""> <input type="text" name="email" maxlength="256"
+            class="textinput textInput form-control" required="" id="id_email">
+        </div>
+      </div>
 
-```
-* 
-```
+      <button type="submit"
+        class="btn btn-primary btn-block">Зарегистрироваться</button>
+    </form>
+  </div>
+</div>
 
+{% endblock content %}
 ```
-* 
+* authapp/views.py добавляем вниз следующий код
 ```
+class RegisterView(TemplateView):
+    template_name = "registration/register.html"
 
+    def post(self, request, *args, **kwargs):
+
+        # код оборачивается в try/except чтобы код отработал до конца и если что сообщил об ошибке
+        # через фреймоворк сообщений
+        try:
+            if all(
+                (
+                    request.POST.get("username"),
+                    request.POST.get("email"),
+                    request.POST.get("password1"),
+                    request.POST.get("password1") == request.POST.get("password2"),
+                )
+            ):
+                #если все ок, создаем нового пользователя
+                new_user = models.CustomUser.objects.create(
+                    username=request.POST.get("username"),
+                    first_name=request.POST.get("first_name"),
+                    last_name=request.POST.get("last_name"),
+                    age=request.POST.get("age") if request.POST.get("age") else 0,
+                    avatar=request.FILES.get("avatar"),
+                    email=request.POST.get("email"),
+                )
+                #пароли забираются ввиде хэшсуммы SHA256
+                new_user.set_password(request.POST.get("password1"))
+                new_user.save()
+                messages.add_message(request, messages.INFO, _("Registration success!"))
+                return HttpResponseRedirect(reverse_lazy("authapp:login"))
+        except Exception as exp:
+            messages.add_message(
+                request,
+                messages.WARNING,
+                mark_safe(f"Something goes worng:<br>{exp}"),
+            )
+            return HttpResponseRedirect(reverse_lazy("authapp:register"))
 ```
 * 
 ```

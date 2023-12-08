@@ -294,29 +294,9 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 ```
 * authapp/templates/registration/login.html с всплывающими окнами
 ```html
+{% extends 'base.html' %}
 {% load static %}
-
-<!doctype html>
-<html lang="ru">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-
-    <!-- ChartJS -->
-    <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
-
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="{% static 'css/fontawesome.all.min.css' %}">
-
-    <title>Welcome to Braniac!</title>
-</head>
-
-<body>
+{% block content %}
 
     {% include 'includes/messages.html' %}
 
@@ -363,34 +343,8 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
         </div>
     </div>
 
-    <!-- JavaScript section -->
-    <!-- Bootstrap -->
-    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-    <!-- ChartJs -->
-    <script src="{% static 'js/Chart.min.js' %}"></script>
-
-    <!-- FontAwesome -->
-    <script src="{% static 'js/fontawesome.all.min.js' %}"></script>
-
-    <!-- Toasts -->
-    <script>
-        $(document).ready(function () {
-
-            {% if messages %}
-            // Toasts
-            $(".toast").toast({ delay: 5000 });
-            $(".toast").toast("show");
-            {% endif %}
-
-        });
-    </script>
-
-</body>
-
-</html>
+{% endblock content %}
 ```
 * код самих всплывающиих сообщений
 ```
@@ -401,7 +355,7 @@ touch templates/includes/messages.html
     <div aria-live="polite" aria-atomic="true" class="m-2">
       <!-- Position it -->
       <div class="d-flex align-items-end flex-column">
-  
+
         {% for message in messages %}
         <!-- Then put toasts within -->
         <div class="toast flex-fill w-100
@@ -431,11 +385,11 @@ touch templates/includes/messages.html
           console.log("{{ message }}");
         </script>
         {% endif %}
-  
+
         {% endfor %}
-  
+
       </div>
-  
+
     </div>
   </div>
 ```

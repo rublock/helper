@@ -292,8 +292,8 @@ mkdir -p authapp/templates/registration/
 ```
 mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 ```
-* authapp/templates/registration/login.html
-```
+* authapp/templates/registration/login.html с всплывающими окнами
+```html
 {% load static %}
 
 <!doctype html>
@@ -392,8 +392,11 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 
 </html>
 ```
-* touch templates/includes/messages.html всплывающие сообщения
+* код самих всплывающиих сообщений
 ```
+touch templates/includes/messages.html
+```
+```html
 <div class="position-absolute w-100" style="z-index: 1;">
     <div aria-live="polite" aria-atomic="true" class="m-2">
       <!-- Position it -->
@@ -436,7 +439,7 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
     </div>
   </div>
 ```
-* templates/base.html добавляем блок {% block js %} для интерактивного вывода сообщений
+* mainapp/templates/mainapp/base.html добавляем блок {% block js %} для интерактивного вывода сообщений
 ```html
 {% load static %}
 
@@ -590,9 +593,9 @@ mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
 </html>
 ```
 * страница выхода
-* При выходе пользователь переходит по адресу, указанному в настройках переменной LOGOUT_REDIRECT_URL.
+* При выходе пользователь переходит по адресу, указанному в настройках переменной LOGOUT_REDIRECT_URL
 * authapp/views.py добавляем вниз следующий код
-```
+```python
 class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.add_message(self.request, messages.INFO, _("See you later!"))
@@ -689,7 +692,11 @@ touch authapp/templates/registration/register.html
 {% endblock content %}
 ```
 * authapp/views.py добавляем вниз следующий код
-```
+```python
+from authapp import models
+from django.http.response import HttpResponseRedirect
+from django.urls import reverse_lazy
+
 class RegisterView(TemplateView):
     template_name = "registration/register.html"
 

@@ -51,7 +51,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-# функция динамического задания имени по времени в unicode:
+# функция динамического задания имени файла аватарки по времени в unicode:
 # instance — экземпляр класса модели пользователя
 # filename — имя загруженного файла
 def users_avatars_path(instance, filename):

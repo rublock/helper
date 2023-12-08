@@ -252,7 +252,7 @@ TEMPLATES = [
     },
 ]
 ```
-* authapp/views.py
+* authapp/views.py контроллер для обработки страницы входа с выводом соощбений
 ```python
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
@@ -282,25 +282,313 @@ class CustomLoginView(LoginView):
             )
         return self.render_to_response(self.get_context_data(form=form))
 ```
-* 
+* создаем папку для шаблонов
 ```
+mkdir -p authapp/templates/registration/
+```
+* переносим в нее файл login.html
+```
+mv ./mainapp/templates/mainapp/login.html ./authapp/templates/registration/
+```
+* authapp/templates/registration/login.html
+```
+{% load static %}
 
-```
-* 
-```
+<!doctype html>
+<html lang="ru">
 
-```
-* 
-```
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-```
-* 
-```
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
-```
-* 
-```
+    <!-- ChartJS -->
+    <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.all.min.css' %}">
+
+    <title>Welcome to Braniac!</title>
+</head>
+
+<body>
+
+    {% include 'includes/messages.html' %}
+
+    <div class="row justify-content-around align-items-center" style="height: 100vh; margin: 0px">
+        <div class="text-center">
+            <p>
+                <a href="{% url 'mainapp:main_page' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            </p>
+            <h2>Вход пользователя</h2>
+            <form method="POST">
+
+                {% csrf_token %}
+                <p>
+                    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                        maxlength="150" class="textinput textInput form-control" required="" id="id_username"
+                        placeholder="Username">
+                </p>
+                <p>
+                    <input type="password" name="password" autocomplete="current-password"
+                        class="textinput textInput form-control" required="" id="id_password" placeholder="Password">
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                </p>
+            </form>
+            <p>
+            <div class="row justify-content-between">
+                <div class="col">
+                    <a href="{% url 'authapp:register' %}"><small>Регистрация</small></a>
+                </div>
+                <div class="col">
+                    <a href="#"><small>Забыли пароль?</small></a>
+                </div>
+            </div>
+            </p>
+            <h4>Вход через социальные сети</h4>
+            <p>
+            <div class="btn-group btn-block" role="group">
+                <a class="btn btn-primary" href="#" role="button"><i class="fab fa-vk"></i></a>
+                <a class="btn btn-primary" href="#" role="button"><i class="fab fa-github"></i></a>
+                <a class="btn btn-primary" href="#" role="button"><i class="fab fa-facebook"></i></a>
+            </div>
+            </p>
+        </div>
+    </div>
+
+    <!-- JavaScript section -->
+    <!-- Bootstrap -->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- ChartJs -->
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+
+    <!-- FontAwesome -->
+    <script src="{% static 'js/fontawesome.all.min.js' %}"></script>
+
+    <!-- Toasts -->
+    <script>
+        $(document).ready(function () {
+
+            {% if messages %}
+            // Toasts
+            $(".toast").toast({ delay: 5000 });
+            $(".toast").toast("show");
+            {% endif %}
+
+        });
+    </script>
+
+</body>
+
+</html>
+```
+* touch templates/includes/messages.html
+```
+<div class="position-absolute w-100" style="z-index: 1;">
+    <div aria-live="polite" aria-atomic="true" class="m-2">
+      <!-- Position it -->
+      <div class="d-flex align-items-end flex-column">
+  
+        {% for message in messages %}
+        <!-- Then put toasts within -->
+        <div class="toast flex-fill w-100
+      {% if message.level == 30 %}
+      border-warning
+      {% endif %}
+        " role="alert" aria-live="assertive" aria-atomic="true"
+          style="right: 0;">
+          <div class="toast-header">
+            <span class="mr-2"><i class="far fa-envelope"></i></span>
+            <strong
+              class="mr-auto {% if message.level == 30 %}text-warning{% endif %}">
+              {{ message.tags|capfirst }} message</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body">
+            {{ message }}
+          </div>
+        </div>
+        {% if message.level > 20 %}
+        <!-- If message will dissapere you will find message in console -->
+        <script>
+          console.log("{{ message }}");
+        </script>
+        {% endif %}
+  
+        {% endfor %}
+  
+      </div>
+  
+    </div>
+  </div>
+```
+* templates/base.html
+```
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+  <!-- ChartJS -->
+  <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="{% static 'css/fontawesome.all.min.css' %}">
+
+  <title>
+    {% block title %}
+    Welcome to Braniac!
+    {% endblock title %}
+  </title>
+</head>
+
+<body>
+
+  {% include 'includes/main_menu.html' %}
+
+  {% block messages %}
+  {% include 'includes/messages.html' %}
+  {% endblock messages %}
+
+  <div class="container-md">
+
+    {% block content %}
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
+    optio est esse? Veritatis laborum expedita
+    quibusdam numquam! Expedita amet nisi dolor similique autem, mollitia
+    ipsa et, natus vel explicabo
+    reprehenderit?
+
+    {% endblock content %}
+
+  </div>
+
+  <!-- Footer -->
+
+  <div class="container-lg mt-auto">
+    <hr>
+    <div class="row justify-content-center">
+      <div class="col-sm-6 col-md-3 text-center">
+        <p>
+          <strong>Braniac</strong>
+        </p>
+        <p>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'mainapp:main_page' %}">Домашняя</a></li>
+          <li><a href="{% url 'mainapp:news' %}">Новости</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'authapp:logout' %}">Выйти</a></li>
+          {% else %}
+          <li><a href="{% url 'authapp:login' %}">Войти</a></li>
+          {% endif %}
+        </ul>
+        </p>
+      </div>
+      <div class="col-sm-6 col-md-3 text-center">
+        <p>
+          <strong>Полезное</strong>
+        </p>
+        <p>
+        <ul class="list-unstyled">
+          <li><a href="#">Положения &amp; Условия</a></li>
+          <li><a href="#">Конфиденциальность &amp; Cookies</a></li>
+          <li><a href="#">Документация по API</a></li>
+          <li><a href="{% url 'mainapp:doc_site' %}">Документация по сайту</a>
+          </li>
+        </ul>
+        </p>
+      </div>
+      <div class="col-sm-6 col-md-3 text-center">
+        <p>
+          <strong>Мы в социальных сетях</strong>
+        </p>
+        <p>
+        <div class="row justify-content-around">
+          <div><a href="#"><i class="fab fa-vk fa-2x"></i></a></div>
+          <div><a href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
+          </div>
+          <div><a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+          </div>
+          <div><a href="#"><i class="fab fa-pinterest-p fa-2x"></i></a></div>
+        </div>
+        </p>
+        <p>
+          <strong>Наше приложение</strong>
+        </p>
+        <p>
+        <div class="row justify-content-around">
+          <div><a href="#"><i class="fab fa-app-store fa-2x"></i></a>
+          </div>
+          <div><a href="#"><i class="fab fa-google-play fa-2x"></i></a></div>
+          <div><a href="#"><i class="fab fa-windows fa-2x"></i></a>
+          </div>
+        </div>
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div>
+        <p><small>&copy; GeekBrains 2021</small></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- /Footer -->
+
+
+
+
+  <!-- JavaScript section -->
+  <!-- Bootstrap -->
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  <!-- ChartJs -->
+  <script src="{% static 'js/Chart.min.js' %}"></script>
+
+  <!-- FontAwesome -->
+  <script src="{% static 'js/fontawesome.all.min.js' %}"></script>
+
+  {% block js %}
+  <script>
+    $(document).ready(function () {
+
+      {% if messages %}
+      // Toasts
+      $(".toast").toast({ delay: 5000 });
+      $(".toast").toast("show");
+      {% endif %}
+
+    });
+  </script>
+  {% endblock js %}
+
+</body>
+
+</html>
 ```
 * 
 ```

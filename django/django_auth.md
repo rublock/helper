@@ -559,7 +559,7 @@ class CustomLogoutView(LogoutView):
 ```
 touch authapp/templates/registration/register.html
 ```
-```
+```html
 {% extends 'base.html' %}
 
 {% block content %}

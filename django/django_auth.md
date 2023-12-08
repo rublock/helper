@@ -49,6 +49,7 @@ from django.contrib.auth.models import PermissionsMixin, UserManager
 from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.core.mail import send_mail
 from django.db import models
+#фреймворк перевода
 from django.utils.translation import gettext_lazy as _
 
 # функция которая возвращает путь к файлу и имя файла аватарки в формате вермени в юникод
@@ -257,6 +258,7 @@ TEMPLATES = [
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.utils.safestring import mark_safe
+#фреймворк перевода
 from django.utils.translation import gettext_lazy as _
 
 
@@ -716,7 +718,9 @@ class RegisterView(TemplateView):
                 #пароли забираются ввиде хэшсуммы SHA256
                 new_user.set_password(request.POST.get("password1"))
                 new_user.save()
+                # _ - феймворк сообщений, в зависимости от того какой язык включен
                 messages.add_message(request, messages.INFO, _("Registration success!"))
+                # reverse_lazy - формируется пусть для перенеправления пользователя сразу из пространства имен
                 return HttpResponseRedirect(reverse_lazy("authapp:login"))
         except Exception as exp:
             messages.add_message(

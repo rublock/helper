@@ -414,15 +414,3 @@ class CustomLoginView(LoginView):
 ```
 
 ```
-* 
-```
-
-```
-* 
-```
-
-```
-* 
-```
-
-```

@@ -206,21 +206,81 @@ TEMPLATES = [
     },
 ]
 ```
-* 
+### Фреймвок сообщений
 ```
+В Django «из коробки» предоставляется фреймворк сообщений. Этот механизм позволяет выводить
+для пользователя различную служебную информацию, например, в виде всплывающих сообщений.
+Эти сообщения предназначены для конкретного пользователя и создаются в момент формирования
+ответа от сервера. Требуемый входной параметр — объект запроса.
+Сообщения сохраняются:
+●в текущей сессии пользователя;
+●cookies;
+●своей реализации хранилища.
+© geekbrains.ru
+13Сообщения также разделяются по уровню важности: debug, info, success, warning, error. Это позволяет,
+например, отсекать отладочные (debug) уведомления в продуктовой среде.
+Сообщения удобно использовать при отладке, в качестве приветственных или информационных
+объявлений и т. д. Сочетая возможности шаблонов Django и JavaScript, уведомления выводятся и в
+консоль браузера.
+Однако не стоит злоупотреблять этим инструментом: слишком частые сообщения раздражают
+пользователей.
+В качестве основного хранилища сообщений мы будем использовать сессии.
+```
+* config/settings.py
+```python
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+```
+* config/settings.py
+```python
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.template.context_processors.media",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages", #new
+                "mainapp.context_processors.example.simple_context_processor",
+            ],
+        },
+    },
+]
+```
+* authapp/views.py
+```python
+from django.contrib import messages
+from django.contrib.auth.views import LoginView
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
-```
-* 
-```
 
-```
-* 
-```
+class CustomLoginView(LoginView):
+    def form_valid(self, form):
+        ret = super().form_valid(form)
+        #код для вывода сообщения
+        message = _("Login success!<br>Hi, %(username)s") % {
+            "username": self.request.user.get_full_name()
+            if self.request.user.get_full_name()
+            else self.request.user.get_username()
+        }
+        messages.add_message(self.request, messages.INFO, mark_safe(message))
+        return ret
 
-```
-* 
-```
-
+    def form_invalid(self, form):
+        #код для вывода сообщения
+        for _unused, msg in form.error_messages.items():
+            messages.add_message(
+                self.request,
+                messages.WARNING,
+                mark_safe(f"Something goes worng:<br>{msg}"),
+            )
+        return self.render_to_response(self.get_context_data(form=form))
 ```
 * 
 ```

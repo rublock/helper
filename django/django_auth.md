@@ -157,6 +157,7 @@ pip install Pillow
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 ```
+* создадим диспетчеры адресов (корневой и в приложении)
 * для работы с медиафайлами в процессе отладки надо дополнительно указать соответствующие
 адреса в корневом диспетчере config/urls.py
 ```python
@@ -166,14 +167,31 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", RedirectView.as_view(url="mainapp/")),
     path("mainapp/", include("mainapp.urls", namespace="mainapp")),
+    path("authapp/", include("authapp.urls", namespace="authapp")),
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+* authapp/urls.py
+```python
+from django.urls import path
+from authapp import views
+from authapp.apps import AuthappConfig
+
+
+app_name = AuthappConfig.name
+
+urlpatterns = [
+    path("login/", views.CustomLoginView.as_view(), name="login"),
+    path("logout/", views.CustomLogoutView.as_view(), name="logout"),
+    path("register/", views.RegisterView.as_view(), name="register"),
+    path("profile_edit/", views.ProfileEditView.as_view(), name="profile_edit"),
+]
 ```
 * config/settings.py меняем в найтройках стандартную модель аутентификации пользователя
 ```python

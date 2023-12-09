@@ -423,15 +423,7 @@ touch templates/includes/messages.html
 
   <div class="container-md">
 
-    {% block content %}
-
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-    optio est esse? Veritatis laborum expedita
-    quibusdam numquam! Expedita amet nisi dolor similique autem, mollitia
-    ipsa et, natus vel explicabo
-    reprehenderit?
-
-    {% endblock content %}
+    {% block content %}{% endblock content %}
 
   </div>
 

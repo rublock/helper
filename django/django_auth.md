@@ -547,6 +547,7 @@ class CustomLogoutView(LogoutView):
         return super().dispatch(request, *args, **kwargs)
 ```
 * страница регистрации нового пользователя
+* свойство enctype="multipart/form-data", позволяет отправлять файлы картинок на сервер
 ```
 touch authapp/templates/registration/register.html
 ```
@@ -682,13 +683,123 @@ class RegisterView(TemplateView):
             )
             return HttpResponseRedirect(reverse_lazy("authapp:register"))
 ```
-* 
-```
+* Страница редактирования профиля
+* authapp/views.py добавляем в конец
+* LoginRequiredMixin - проверяет вошел ли пользователь на сайт
+* login_url - укажет, куда перенаправить пользователя, чтобы он мог войти на сайт
+```python
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-```
-* 
-```
 
+class RegisterView(TemplateView):
+    template_name = "registration/register.html"
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if all(
+                (
+                    request.POST.get("username"),
+                    request.POST.get("email"),
+                    request.POST.get("password1"),
+                    request.POST.get("password1") == request.POST.get("password2"),
+                )
+            ):
+                new_user = models.CustomUser.objects.create(
+                    username=request.POST.get("username"),
+                    first_name=request.POST.get("first_name"),
+                    last_name=request.POST.get("last_name"),
+                    age=request.POST.get("age") if request.POST.get("age") else 0,
+                    avatar=request.FILES.get("avatar"),
+                    email=request.POST.get("email"),
+                )
+                new_user.set_password(request.POST.get("password1"))
+                new_user.save()
+                messages.add_message(request, messages.INFO, _("Registration success!"))
+                return HttpResponseRedirect(reverse_lazy("authapp:login"))
+        except Exception as exp:
+            messages.add_message(
+                request,
+                messages.WARNING,
+                mark_safe(f"Something goes worng:<br>{exp}"),
+            )
+            return HttpResponseRedirect(reverse_lazy("authapp:register"))
+```
+* touch authapp/templates/registration/profile_edit.html
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center my-2">
+  <div class="col-lg-6">
+    <h3>Редактирование профиля</h3>
+
+    <div class="row justify-content-center">
+      <div class="col-sm-7 col-md-5 col-lg-4">
+        {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt="" width="100%">
+        {% else %}
+        <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="100%">
+        {% endif %}
+      </div>
+    </div>
+
+    <form method="post" class="mt-2" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div id="div_id_username" class="form-group"> <label for="id_username"
+          class=" requiredField">
+          Username<span class="asteriskField">*</span> </label>
+        <div class=""> <input type="text" name="username" maxlength="150"
+            class="textinput textInput form-control" required id="id_username"
+            value="{{ user.username }}"> <small id="hint_id_username"
+            class="form-text text-muted">Required. 150 characters or fewer.
+            Letters, digits and @/./+/-/_ only.</small> </div>
+      </div>
+      <div id="div_id_first_name" class="form-group"> <label for="id_first_name"
+          class="">
+          First name
+        </label>
+        <div class=""> <input type="text" name="first_name" maxlength="150"
+            class="textinput textInput form-control" id="id_first_name"
+            value="{{ user.first_name }}"> </div>
+      </div>
+      <div id="div_id_last_name" class="form-group"> <label for="id_last_name"
+          class="">
+          Last name
+        </label>
+        <div class=""> <input type="text" name="last_name" maxlength="150"
+            class="textinput textInput form-control" id="id_last_name"
+            value="{{ user.last_name }}"> </div>
+      </div>
+      <div id="div_id_age" class="form-group"> <label for="id_age" class="">
+          Age
+        </label>
+        <div class=""> <input type="number" name="age" min="0"
+            class="numberinput form-control" id="id_age" value="{{ user.age }}">
+        </div>
+      </div>
+      <div id="div_id_avatar" class="form-group"> <label for="id_avatar"
+          class="">
+          Avatar
+        </label>
+        <div class=""> <input type="file" name="avatar" accept="image/*"
+            class="clearablefileinput form-control-file" id="id_avatar"> </div>
+      </div>
+      <div id="div_id_email" class="form-group"> <label for="id_email"
+          class=" requiredField">
+          Email address<span class="asteriskField">*</span> </label>
+        <div class=""> <input type="text" name="email" maxlength="256"
+            class="textinput textInput form-control" required="" id="id_email"
+            value="{{ user.email }}">
+        </div>
+      </div>
+
+      <button type=" submit"
+        class="btn btn-primary btn-block">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
 ```
 * 
 ```

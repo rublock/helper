@@ -734,7 +734,9 @@ class RegisterView(TemplateView):
             )
             return HttpResponseRedirect(reverse_lazy("authapp:register"))
 ```
-* touch authapp/templates/registration/profile_edit.html
+```
+touch authapp/templates/registration/profile_edit.html
+```
 ```html
 {% extends 'base.html' %}
 

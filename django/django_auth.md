@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "authapp", #new
 ]
 ```
-* переопределяем стандартную модель пользователя
+* authapp/models.py переопределяем стандартную модель пользователя
 ```python
 from pathlib import Path
 from time import time
@@ -152,7 +152,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 ```
 pip install Pillow
 ```
-* в config/settings.py прописываем путь до медиафайлов
+* config/settings.py прописываем путь до медиафайлов
 ```python
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

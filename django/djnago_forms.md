@@ -1,4 +1,4 @@
-### Работа с формами через forms.Form
+## Работа с формами
 
 * форма с выпадающим списком
 ```python
@@ -67,93 +67,6 @@ pip install django-widget-tweaks
       <br>
   <button type="submit" class="btn btn-primary">Создать</button>
 </form>
-```
-### Работа с формами через UserCreationFrom
-```
-authapp/forms.py
-```
-```python
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UsernameField
-
-
-class CustomUserCreationForm(UserCreationForm):
-    field_order = [
-        "username",
-        "password1",
-        "password2",
-        "email",
-        "first_name",
-        "last_name",
-        "age",
-        "avatar",
-    ]
-
-    class Meta:
-        model = get_user_model()
-        fields = (
-            "username",
-            "email",
-            "first_name",
-            "last_name",
-            "age",
-            "avatar",
-        )
-        field_classes = {"username": UsernameField}
-```
-* authapp/views.py
-```python
-class RegisterView(CreateView):
-    model = get_user_model()
-    form_class = forms.CustomUserCreationForm
-    success_url = reverse_lazy("mainapp:main_page")
-```
-```
-В контроллере шаблон не указывается, его имя сформируется автоматически. Имя шаблона составляется из имени модели в нижнем регистре и постфикса _form. Постфикс определён в родительском классе контроллера в атрибуте template_name_suffix. Модель пользователя — CustomUser. Имя шаблона — customuser_form.html. Это ещё одна конвенция Django. Помимо контроллера создания (CreateView), этот шаблон станет использовать и другой тип
-контроллера обновления объекта (UpdateView). При использовании стандартных контроллеров в контекст шаблона, а именно в переменную form, помещается объект формы. Для генерации вёрстки из объекта формы берутся три функции:
-1. as_p — поля формы формируются как параграфы. 
-2. as_ul — поля формы формируются как элементы списка.
-3. as_table — поля формы формируются как таблица.
-```
-```
-touch authapp/templates/authapp/customuser_form.html
-```
-```html
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="row justify-content-center my-2">
-  <div class="col-lg-6">
-
-    {% if user.is_anonymous %}
-    <h3>Регистрация нового пользователя</h3>
-    {% else %}
-    <h3>Редактировать профиль</h3>
-    <div class="row justify-content-center">
-      <div class="col-sm-7 col-md-5 col-lg-4">
-        {% if user.avatar %}
-        <img src="{{ user.avatar.url }}" alt="" width="100%">
-        {% else %}
-        <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="100%">
-        {% endif %}
-      </div>
-    </div>
-    {% endif %}
-
-    <form method="post" class="mt-2" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form }}
-      <button type="submit" class="btn btn-primary btn-block">
-        {% if user.is_anonymous %}
-        Зарегистрироваться
-        {% else %}
-        Сохранить
-        {% endif %}
-      </button>
-    </form>
-  </div>
-</div>
-{% endblock content %}
 ```
 * 
 ```

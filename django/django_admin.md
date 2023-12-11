@@ -30,17 +30,16 @@ model.objects.get(username="admin", is_superuser=True).delete()
 from django.contrib import admin
 from mainapp import models as mainapp_models
 
-
-	admin.site.register(mainapp_models.News)
+admin.site.register(mainapp_models.News)
 ```
 или
 ```python
 from django.contrib import admin
 from mainapp import models as mainapp_models
 
-	@admin.register(mainapp_models.News)
-	class NewsAdmin(admin.ModelAdmin):
-		pass
+@admin.register(mainapp_models.News)
+class NewsAdmin(admin.ModelAdmin):
+	pass
 ```
 ```
 По умолчанию в административном разделе модель именуется как множество объектов. Имя формируется по стандартному правилу обозначения множественного числа в английском языке путём подстановки постфикса s. Однако в некоторых случаях это правило не работает, например, с моделью новостей News. Множественное и единственное представление этого объекта будет называться одинаково.
@@ -59,8 +58,8 @@ python manage.py makemigrations && migrate
 * mainapp/admin.py код класса с настройкой отображаемых атрибутов объектов
 ```python
 @admin.register(mainapp_models.Lesson)
-	class LessonAdmin(admin.ModelAdmin):
-		list_display = ["id", "num", "title", "deleted"]
+class LessonAdmin(admin.ModelAdmin):
+	list_display = ["id", "num", "title", "deleted"]
 ```
 ```
 Поля-связи с другими таблицами не позволяют просто вывести значение. Чтобы описать способ вывода этих данных в таблице, надо применить функцию. Для этой функции задаётся дополнительный атрибут short_description, значение которого выводится в качестве заголовка столбца. Имя функции надо занести в список list_display.

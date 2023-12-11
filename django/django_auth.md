@@ -921,10 +921,15 @@ AUTHENTICATION_BACKENDS = (
 ```
 * идем на GitHub.com > Settings > Developer Settings > OAuth Apps
 * зполняем форму
+* Homepage URl
+```
+http://127.0.0.1:8000/
+```
 * Authorisation callback URL - адрес, куда возвращать прользователя при прохождении аутентификации
 ```
 http://[ip_address]/social_auth/complete/github
 ```
+* generate a new client secret
 * копируем Clietn ID и Clietn secrets
 * config/settings.py
 ```python

@@ -155,21 +155,44 @@ touch authapp/templates/authapp/customuser_form.html
 </div>
 {% endblock content %}
 ```
-* 
+* Для стилистического оформления форм под некоторые CSS-фреймворки спользуется
+дополнительный пакет для Django: django-crispy-forms.
 ```
+pip install django-crispy-forms
+```
+```python
+INSTALLED_APPS = [
+    "crispy_forms",
+]
+```
+```
+pip install crispy-bootstrap4
+```
+```python
+INSTALLED_APPS = [
+    "crispy_forms",
+]
+```
+```
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+```
+```html
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-```
-* 
-```
+<form method="post" class="mt-2" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary btn-block">
+        {% if user.is_anonymous %}
+        Зарегистрироваться
+        {% else %}
+        Сохранить
+        {% endif %}
+      </button>
+</form>
 
-```
-* 
-```
-
-```
-* 
-```
-
+{% endblock content %}
 ```
 * 
 ```

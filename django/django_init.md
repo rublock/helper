@@ -123,21 +123,6 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
-* создаем суперпользователя
-```
-python manage.py shell
-```
-```python
-from django.contrib.auth import get_user_model
-User = get_user_model()
-User.objects.create_superuser('admin', 'admin@example.com', 'admin')
-```
-* удалить суперпользователя
-```python
-from django.contrib.auth import get_user_model
-model = get_user_model()
-model.objects.get(username="admin", is_superuser=True).delete()
-```
 * фиксируем имзенения на github
 ```
 git add . && git commit -am "Initial commit" && git push

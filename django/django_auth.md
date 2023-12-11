@@ -874,6 +874,122 @@ touch authapp/templates/registration/profile_edit.html
   </div>
 </nav>
 ```
+### Регистрация через социальную сеть
+* Python Social Auth
+```
+pip install social-auth-app-django
+```
+```python
+INSTALLED_APPS = [
+    "social_django",
+]
+```
+config/settings.py
+```
+python manage.py migrate
+```
+config/settings.py
+```python
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [
+            "templates",
+        ],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.template.context_processors.media",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "mainapp.context_processors.example.simple_context_processor",
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
+            ],
+        },
+    },
+]
+```
+* config/settings.py аутенфикация через GitHub
+```python
+AUTHENTICATION_BACKENDS = (
+    "social_core.backends.github.GithubOAuth2",
+    "django.contrib.auth.backends.ModelBackend",
+)
+```
+* идем на GitHub.com > Settings > Developer Settings > OAuth Apps
+* зполняем форму
+* Authorisation callback URL - адрес, куда возвращать прользователя при прохождении аутентификации
+```
+http://[ip_address]/social_auth/complete/github
+```
+* копируем Clietn ID и Clietn secrets
+* config/settings.py
+```python
+SOCIAL_AUTH_GITHUB_KEY = "9167760eb88814bb1a60"
+SOCIAL_AUTH_GITHUB_SECRET = "b12cf89b73864301637749d48cbc651a270cf324"
+```
+* authapp/templates/registration/login.html
+```html
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'includes/messages.html' %}
+
+    <div class="row justify-content-around align-items-center" style="height: 100vh; margin: 0px">
+        <div class="text-center">
+            <p>
+                <a href="{% url 'mainapp:main_page' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            </p>
+            <h2>Вход пользователя</h2>
+            <form method="POST">
+
+                {% csrf_token %}
+                <p>
+                    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                        maxlength="150" class="textinput textInput form-control" required="" id="id_username"
+                        placeholder="Username">
+                </p>
+                <p>
+                    <input type="password" name="password" autocomplete="current-password"
+                        class="textinput textInput form-control" required="" id="id_password" placeholder="Password">
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                </p>
+            </form>
+            <p>
+            <div class="row justify-content-between">
+                <div class="col">
+                    <a href="{% url 'authapp:register' %}"><small>Регистрация</small></a>
+                </div>
+                <div class="col">
+                    <a href="#"><small>Забыли пароль?</small></a>
+                </div>
+            </div>
+            </p>
+            <h4>Вход через социальные сети</h4>
+            <p>
+            <div class="btn-group btn-block" role="group">
+                <a class="btn btn-primary" href="#" role="button"><i class="fab fa-vk"></i></a>
+                <a class="btn btn-primary" href="{% url 'social:begin' 'github' %}" role="button"><i
+                        class="fab fa-github"></i></a>
+                <a class="btn btn-primary" href="#" role="button"><i class="fab fa-facebook"></i></a>
+            </div>
+            </p>
+        </div>
+    </div>
+
+{% endblock content %}
+
+```
+* config/urls.py
+```python
+path("social_auth/", include("social_django.urls", namespace="social")),
+```
 * 
 ```
 

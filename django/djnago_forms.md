@@ -194,29 +194,67 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 {% endblock content %}
 ```
-* 
+* Методы проверки полей формы
 ```
+В формах Django для проверки конкретных полей можно создать метод с суффиксом clean_ и именем поля. Значения формы извлекаются из внутреннего объекта cleaned_data.
+a. Метод clean_avatar проверяет изменение аватарки пользователя:
+если она изменилась, то файл со старой картинкой удаляется.
+b. Метод clean_age проверяет возраст пользователя. Если его значение не соответствует критериям, то возбуждается исключение ValidationError. Текст оттуда система выведет в форму как подсказку.
+```
+```python
+class CustomUserChangeForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = (
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "age",
+            "avatar",
+        )
+        field_classes = {"username": UsernameField}
 
-```
-* 
-```
+    def clean_avatar(self):
+        arg_as_str = "avatar"
+        if arg_as_str in self.changed_data and self.instance.avatar:
+            if os.path.exists(self.instance.avatar.path):
+                os.remove(self.instance.avatar.path)
+        return self.cleaned_data.get(arg_as_str)
 
+    def clean_age(self):
+        data = self.cleaned_data.get("age")
+        if data:
+            if data < 10 or data > 100:
+                raise ValidationError(_("Please, enter a valid age!"))
+        return data
 ```
-* 
-```
+* получение первичного ключа (pk) пользователя через url адрес
+* authapp/views.py
+```python
+class ProfileEditView(UserPassesTestMixin, UpdateView):
+    model = get_user_model()
+    form_class = forms.CustomUserChangeForm
 
-```
-* 
-```
+    def test_func(self):
+        return True if self.request.user.pk == self.kwargs.get("pk") else False
 
+    def get_success_url(self):
+        return reverse_lazy("authapp:profile_edit", args=[self.request.user.pk])
 ```
-* 
 ```
+Во время обычной проверки входа любой пользователь сможет изменить значение в адресной строке, чтобы редактировать профили других пользователей. Надо внимательно относиться к возможным проблемам с чувствительными данными и проверять векторы атаки.
+Для решения этой проблемы мы используем примесь UserPassesTestMixin. Она добавляет в класс контроллера функцию test_func, которую требуется переопределить. Эта функция делает проверку перед тем, как пропускать запрос на дальнейшую обработку, а затем возвращает булево значение.
 
+get_success_url — способ указания возвратного url, куда системаперенаправит пользователя после успешного редактирования профиля. Контроллер не знает значение pk пользователя в объекте запроса заранее. Чтобы запросить это значение, используется метод get_success_url, который формирует ссылку с использованием объекта запроса.
 ```
-* 
+* authapp/urls.py
+```python
+path("profile_edit/<int:pk>/", views.ProfileEditView.as_view(), name="profile_edit",)
 ```
-
+* templates/includes/main_menu.html
+```html
+<a class="dropdown-item" href="{% url 'authapp:profile_edit' pk=request.user.pk %}">Редактировать профиль</a>
 ```
 * 
 ```

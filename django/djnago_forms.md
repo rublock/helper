@@ -1,4 +1,4 @@
-## Работа с формами
+## Работа с формами через forms.Form и django-widget-tweaks
 
 * форма с выпадающим списком
 ```python
@@ -68,7 +68,7 @@ pip install django-widget-tweaks
   <button type="submit" class="btn btn-primary">Создать</button>
 </form>
 ```
-### Работа с формами через UserCreationFrom
+### Работа с формами через UserCreationFrom и django-crispy-forms
 ```
 authapp/forms.py
 ```

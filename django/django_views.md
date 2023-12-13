@@ -83,17 +83,38 @@ path("news/<int:pk>/", views.HomePageDetailView.as_view(), name="home_page_detai
     <a href="{% url 'mainapp:home_page_detail' pk=i.pk %}" class="card-link">Подробнее</a>
 {% endfor %}
 ```
-* 
-```
+### Контроллеры CBV CRUD
+* создаем контроллер добавления новости
+```python
+class NewsCreateView(PermissionRequiredMixin, CreateView):
+    template_name = "mainapp/news_form.html"
 
+    model = mainapp_models.News
+    fields = "__all__"
+    success_url = reverse_lazy("mainapp:news")
+    permission_required = ("mainapp.add_news",)
 ```
-* 
+* прописываем пути
+```python
+path("news/create/", views.NewsCreateView.as_view(), name="news_create"),
 ```
+* шаблон формы с использованием crispy
+```html
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-```
-* 
-```
-
+{% block content %}
+<div class="row justify-content-center pt-3">
+  <div class="col-md-12 col-lg-8">
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit"
+        class="btn btn-primary btn-block">Опубликовать</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}
 ```
 * 
 ```

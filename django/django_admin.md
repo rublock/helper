@@ -47,8 +47,8 @@ class NewsAdmin(admin.ModelAdmin):
 * чтобы это скорректировать в mainapp/models.py добавляем
 ```python
 class Meta:
-	verbose_name = _("News")
-	verbose_name_plural = _("News")
+	verbose_name = ("News")
+	verbose_name_plural = ("News")
 	ordering = ("-created",)
 ```
 ```
@@ -74,7 +74,7 @@ class LessonAdmin(admin.ModelAdmin):
 	def get_course_name(self, obj):
 		return obj.course.name
 
-	get_course_name.short_description = _("Course")
+	get_course_name.short_description = ("Course")
 ```
 * cортировка
 ```
@@ -89,7 +89,7 @@ class LessonAdmin(admin.ModelAdmin):
 	def get_course_name(self, obj):
 		return obj.course.name
 
-	get_course_name.short_description = _("Course")
+	get_course_name.short_description = ("Course")
 ```
 * количество объектов на страницу (list_per_page)
 ```python
@@ -131,11 +131,11 @@ class LessonAdmin(admin.ModelAdmin):
 	def get_course_name(self, obj):
 		return obj.course.name
 
-	get_course_name.short_description = _("Course")
+	get_course_name.short_description = ("Course")
 	def mark_deleted(self, request, queryset):
 		queryset.update(deleted=True)
 
-	mark_deleted.short_description = _("Mark deleted")
+	mark_deleted.short_description = ("Mark deleted")
 ```
 * кастомизация внешнего вида
 * изменение логотипа
@@ -168,6 +168,73 @@ templates/admin/base_site.html
 Возможности административного раздела расширяются через различные дополнительные пакеты. Некоторые из них полностью модифицируют способ взаимодействия с фреймворком. Перед тем как кастомизировать административный раздел, надо понять, действительно ли это необходимо. Если стандартных функций достаточно, то лучше использовать административный раздел «из коробки»: выигрыш — по времени, проигрыш — по гибкости. А если требуется тонкая настройка — добавление дополнительных страниц, реализация отображения графиков и прочее, то придётся реализовать aдминистративный раздел самостоятельно: выигрыш — по гибкости, проигрыш — по времени.
 ```
 * https://djangopackages.org/grids/g/admin-interface/
+```
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
+```
+
+```
+*
 ```
 
 ```

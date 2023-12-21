@@ -66,13 +66,28 @@ cache.set(“<key>”, “<value>”) — для установки значен
 параметр timeout. По умолчанию это значение устанавливается из конфигурации проекта
 DEFAULT_TIMEOUT и если оно не задано вручную, то равно 30 секундам.
 ```
-* 
-```
+```python
+class CoursesDetailView(TemplateView):
+    template_name = "mainapp/courses_detail.html"
 
-```
-* 
-```
+    def get_context_data(self, pk=None, **kwargs):
 
+		cached_feedback = cache.get(f"feedback_list_{pk}") #проверяем есть ли кэш
+			if not cached_feedback:
+			    context["feedback_list"] = (
+			        mainapp_models.CourseFeedback.objects.filter(course=context["course_object"])
+			        .order_by("-created", "-rating")
+			        .select_related()
+			    )
+			    cache.set(f"feedback_list_{pk}", context["feedback_list"], timeout=300)  # кэшируем на 300 сек.
+			else:
+			    context["feedback_list"] = cached_feedback
+
+			return context
+```
+* открыть консоль
+```
+redis-cli
 ```
 * 
 ```

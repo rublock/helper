@@ -97,6 +97,7 @@ touch docker-compose.yml
 ```
 * заполним файл docker-compose.yml
 ```
+# Версия схемы docker-compose
 version: '3.8'
 
 services:
@@ -111,7 +112,7 @@ services:
     # Открываем порт 8000 внутри и снаружи
     ports:
       - 8000:8000
-    # Файл содержащий переменные для контейнера
+    # Файл содержащий переменные окружения
     env_file:
       - ./.env
 ```

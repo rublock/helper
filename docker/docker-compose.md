@@ -101,7 +101,7 @@ touch docker-compose.yml
 version: '3.8'
 
 services:
-  web:
+  django:
     # Берем Dockerfile из каталога app
     build: ./app
     # Запускаем тестовый сервер

@@ -16,9 +16,9 @@ if DEBUG:
         "127.0.0.1",
     ]
 ```
-* 
+* проверка статуса redis на машине
 ```
-
+sudo systemctl status redis
 ```
 * указываем для Django тот backend, который используется в качестве кеш-системы
 ```python

@@ -13,7 +13,7 @@ sudo sh get-docker.sh
 ```
 * проверка
 ```
-sudo systemctl status docker
+service docker status
 ```
 * верисия
 ```
@@ -21,7 +21,7 @@ docker -v
 ```
 * добавляем пользователя в группу Docker чтобы не писать sudo
 ```
-sudo groupadd docker && sudo usermod -aG docker [user_name] && newgrp docker
+sudo usermod -aG docker [user_name] && reboot
 ```
 
 ### Работка с Docker
@@ -33,6 +33,14 @@ sudo docker images
 скачать образ из репозитория
 ```
 sudo docker pull [image_name]
+```
+создать контейнер из образа (если нет локально, то скачает с dockerhub версию latest)
+```
+docker run [image_name]
+```
+создать контейнер из образа и поставить в спящий режим, чтобы он не закрылся
+```
+docker run [image_name] sleep [sec]
 ```
 удалить образ (перед этим нужно остановить контейнер этого образа)
 ```
@@ -69,10 +77,6 @@ docker attach [options] [container_name]
 * логи контейнера
 ```
 docker logs [container_name]
-```
-* удалить все в докере
-```
-docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
 ```
 * базовая инструкция для Django проекта
 ```

@@ -2,6 +2,17 @@
 ```
 cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch base.html
 ```
+* проверяем пусть к шаблонам
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'], # указываем путь к каталогу с шаблонами
+        # ...
+    },
+]
+```
+* mainapp/templates/mainapp/base.html
 ```html
 <!DOCTYPE html>
 <html lang="en">

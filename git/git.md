@@ -25,6 +25,10 @@ cd .ssh && cat ./id_rsa.pub
 ```
 ssh-keygen && cd .ssh/ && cat ./id_rsa.pub
 ```
+* говорим гиту кто мы
+```
+git config --global user.email "hypermail@yandex.ru" && git config --global user.name "mack"
+```
 
 
 * скопировать репозиторий с Git через ssh

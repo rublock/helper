@@ -7,7 +7,7 @@ cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # указываем путь к каталогу с шаблонами
+        'DIRS': [BASE_DIR / 'mainapp/templates/mainapp'], # указываем путь к каталогу с шаблонами
         # ...
     },
 ]

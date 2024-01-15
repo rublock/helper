@@ -3,6 +3,7 @@
 cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch base.html
 ```
 * проверяем пусть к шаблонам
+* config/settings.py
 ```python
 TEMPLATES = [
     {

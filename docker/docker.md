@@ -74,7 +74,7 @@ docker exec -it [container_name] /bin/bash
 ```
 docker logs -f [container_name]
 ```
-> * -f: логи в режиме реального времени
+> * -f - логи в режиме реального времени
 
 * посмотреть информацию по контейнеру
 ```
@@ -90,31 +90,36 @@ docker stats [container_name or id]
 ```
 docker run --name [container_name] -d -p 8080:80 [image_name]:[image_version]
 ```
-> * --name: Устанавливает имя контейнера Docker
-> * -d: Заставляет образ работать  в фоновом режиме
-> * -p 8080:80: Сопоставляет порт 80 в контейнере Docker с портом 8080 на локальном хосте,
+> * --name - устанавливает имя контейнера Docker
+> * -d - заставляет образ работать  в фоновом режиме
+> * -p 8080:80 - сопоставляет порт 80 в контейнере Docker с портом 8080 на локальном хосте,
 > можно пробрасывать большее количество портов
-> * image_name:latest Указывает, какой образ используется для сборки контейнера Docker
+> * image_name:latest - указывает, какой образ используется для сборки контейнера Docker
 
 ### Переменные окружения
 ```
-docker run --name [container_name] -e DB_PASSWORD=[password] -d mysql
+docker run --name [container_name] -e MYSQL_ROOT_PASSWORD=[password] -d mysql
 ```
-> * -e: Переменная окружения которая будет лежать в контейнере
+> * -e - переменная окружения которая будет лежать в контейнере
 
 * посмотреть все переменные окружения на машине или в контейнере
 ```
 env
 ```
-*
-```
 
+### Docker Volumes (сохраняющиеся данные)
+* Host Volumes
 ```
-*
+docker run -v /opt/mysql_data:/var/lib/mysql mysql
 ```
-
+> * /opt/mysql_data - данные на сервере
+> *	/var/lib/mysql - данные в docker контейнере
+* Named Volumes
 ```
-*
+docker run -v mysql_data:var/lib/mysql mysql
+```
+> * mysql_data - создается папка на сервере var/lib/docker/volumes/mysql_data/_data
+> *	/var/lib/mysql - данные в docker контейнере
 ```
 
 ```

@@ -124,7 +124,7 @@ docker run -v /opt/mysql_data:/var/lib/mysql:ro mysql
 > *	/var/lib/mysql - данные в docker контейнере
 > * :ro - права только на чтение (read only)
 
-* пример с nginx
+###### пример с nginx
 * создаем папку на сервере
 ```
 sudo mkdir /opt/nginx/data
@@ -191,7 +191,7 @@ docker network disconnect [NetworkID] [container_name]
 > * NetworkID березем из docker inspect [container_name] -> NetworkID
 
 
-* тип сети bridge
+###### тип сети bridge
 > * такой тип сети создается поумолчанию когда мы вводим docker run
 > * ip - 172.17.0.0/16
 > * /16 - указывает на то, что первые 16 битов адреса составляют сетевую часть, а оставшиеся 16 битов - хостовую часть. Это означает, что данная подсеть имеет маску подсети 255.255.0.0 и включает в себя диапазон IP-адресов от 172.17.0.0 до 172.17.255.255
@@ -206,7 +206,7 @@ docker network create -d bridge [network_name]
 docker run --net [network_name] [image_name]:[image_version]
 ```
 
-* тип сети host
+###### тип сети host
 > * используется ip адрес сервера (хоста)
 * зпустить контейнер с сетью host
 ```
@@ -214,7 +214,7 @@ docker run --rm -it --name [container_name] --net host [image_name]:[image_versi
 ```
 > * ip a -> данные по сетям такие же как и на сервере
 
-* тип сети none
+###### тип сети none
 > * нельзя никак подключиться извне, но можно выполнять комманды docker
 * запустить контейнер с сетью none
 ```
@@ -222,7 +222,7 @@ docker run --rm -it --name [container_name] --net none [image_name]:[image_versi
 ```
 > * ip a -> есть только localhost
 
-* тип сети macvlan
+###### тип сети macvlan
 > * каждый контейнер получает свой собственный mac адрес
 * создать сеть macvlan
 ```
@@ -235,7 +235,7 @@ docker network create -d macvlan --subnet 192.168.100.10/24 --gateway 192.168.10
 docker run --rm -it --name [container_name] --ip 10.10.10.213 --net [macvlan_network_name] [image_name]:[image_version] /bin/bash
 ```
 
-* тип сети ipvlan
+###### тип сети ipvlan
 > * каждый контейнер получает тот же mac адрес что и у сервера
 ```
 

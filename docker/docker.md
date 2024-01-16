@@ -161,30 +161,36 @@ sudo chmod -R 777 docker/
 ```
 docker network ls
 ```
-* 
+* посмотреть инфорацию о сети
 ```
+docker network inspect [network_name]
+```
+* создать сеть с ip адресом
+```
+docker network create -d bridge --subnet 192.168.10.0/24 --gateway 192.168.10.1 [network_name]
+```
+> * -d - драйвер или тип сети
+> * --subnet 192.168.10.0/24 - указывает, что адреса в этой сети будут из диапазона 192.168.10.0 до 192.168.10.255 с маской подсети /24, что означает, что первые 24 бита IP-адреса будут общими для всех устройств в этой подсети.
+> * --gateway - узел в сети, который используется для связи с другими сетями или сетевыми устройствами вне текущей сети
+* удалить сеть или несколько
+```
+docker network rm [network_name] [network_name]
+```
+* запустить контейнер в конкретной сети
+```
+docker run --rm -it --name [container_name] --net [network_name] [image_name]:[image_version] /bin/bash
+```
+* поключить docker контейнер к выбранной сети
+```
+docker network connect [network_name] [container_name]
+```
+* отключиться от старой сети в контейнере
+```
+docker network disconnect [NetworkID] [container_name]
+```
+> * NetworkID березем из docker inspect [container_name] -> NetworkID
 
-```
-*
-```
 
-```
-*
-```
-
-```
-*
-```
-
-```
-*
-```
-
-```
-*
-```
-
-```
 * тип сети bridge
 > * такой тип сети создается поумолчанию когда мы вводим docker run
 > * ip - 172.17.0.0/16
@@ -193,55 +199,42 @@ docker network ls
 > * если создать еще одну сесть, то разные сети не смогут общаться между собой (изоляция)
 * создать новую сеть типа bridge
 ```
-docker network create --drive bridge [network_name]
+docker network create -d bridge [network_name]
 ```
 * запустить контейнер в созданной сети
 ```
 docker run --net [network_name] [image_name]:[image_version]
 ```
-*
-```
 
-```
-*
-```
-
-```
-*
-```
-
-```
-*
-```
-
-```
-*
-```
-
-```
-*
-```
-
-```
-*
-```
-
-```
 * тип сети host
 > * используется ip адрес сервера (хоста)
+* зпустить контейнер с сетью host
 ```
+docker run --rm -it --name [container_name] --net host [image_name]:[image_version] /bin/bash
+```
+> * ip a -> данные по сетям такие же как и на сервере
 
-```
 * тип сети none
-> * нельзя никак подключиться извне, однако, можно выполнять комманды docker
+> * нельзя никак подключиться извне, но можно выполнять комманды docker
+* запустить контейнер с сетью none
 ```
+docker run --rm -it --name [container_name] --net none [image_name]:[image_version] /bin/bash
+```
+> * ip a -> есть только localhost
 
-```
 * тип сети macvlan
 > * каждый контейнер получает свой собственный mac адрес
+* создать сеть macvlan
+```
+docker network create -d macvlan --subnet 192.168.100.10/24 --gateway 192.168.100.1 --ip-range 192.168.100.99/32 -o parent=ens18 [network_name]
+```
+> * --ip-range 192.168.100.99/32 - задаем конкрентый ip (не из списка --subnet)(опционально)
+> * -o parent=ens18 - с какой сетевой карточкой на сервере спарен контейнер
+* можно также запускать контейнеры в сети macvlan c конкретным ip
+```
+docker run --rm -it --name [container_name] --ip 10.10.10.213 --net [macvlan_network_name] [image_name]:[image_version] /bin/bash
 ```
 
-```
 * тип сети ipvlan
 > * каждый контейнер получает тот же mac адрес что и у сервера
 ```

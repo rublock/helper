@@ -70,10 +70,6 @@ docker stop $(docker ps -a -q) && docker system prune -a --volumes
 ```
 docker exec -it [container_name] /bin/bash
 ```
-* открыть интерактивную сессию в контейнере
-```
-docker attach [options] [container_name]
-```
 * логи контейнера
 ```
 docker logs -f [container_name]
@@ -92,18 +88,23 @@ docker stats [container_name or id]
 ### Порты
 * создание контейнера с пробросом портов
 ```
-docker run --name [container_name] -d -p 80:8080 [image_name]:[image_version]
+docker run --name [container_name] -d -p 8080:80 [image_name]:[image_version]
 ```
-* --name: Устанавливает имя контейнера Docker.
-* -d: Заставляет образ работать  в фоновом режиме.
-* -p 8000:8000: Сопоставляет порт 8000 в контейнере Docker с портом 8000 на локальном хосте.
-* image_name:latest Указывает, какой образ используется для сборки контейнера Docker.
-```
+* --name: Устанавливает имя контейнера Docker
+* -d: Заставляет образ работать  в фоновом режиме
+* -p 8080:80: Сопоставляет порт 80 в контейнере Docker с портом 8080 на локальном хосте,
+можно пробрасывать большее количество портов
+* image_name:latest Указывает, какой образ используется для сборки контейнера Docker
 
+### Переменные окружения
 ```
-*
+docker run --name [container_name] -e DB_PASSWORD=[password] -d mysql
 ```
+* -e: Переменная окружения которая будет лежать в контейнере
 
+* посмотреть все переменные окружения на машине или в контейнере
+```
+env
 ```
 *
 ```

@@ -96,6 +96,11 @@ docker run --name [container_name] -d -p 8080:80 [image_name]:[image_version]
 > можно пробрасывать большее количество портов
 > * image_name:latest - указывает, какой образ используется для сборки контейнера Docker
 
+* можно пробросить рандомный порт (используется для тестирования)
+```
+docker run -P nginx
+```
+
 ### Переменные окружения
 ```
 docker run --name [container_name] -e MYSQL_ROOT_PASSWORD=[password] -d mysql

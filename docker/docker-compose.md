@@ -1,23 +1,19 @@
 ### Docker-compose
-* скачиваем docker-compose
+* устанавливаем docker compose plugin
 ```
-sudo apt-get install ./docker-desktop-[version]-amd64.deb
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-* устанавливаем docker-compose
+* версия docker compose plugin
 ```
-sudo apt-get install ./docker-desktop-[version]-amd64.deb
-```
-* версия
-```
-docker --version
+docker compose version
 ```
 * собрать проект
 ```
-docker-compose build
+docker compose build
 ```
 * запустить проект
 ```
-docker-compose up -d
+docker compose up -d
 ```
 * остановить проект
 ```

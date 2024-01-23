@@ -20,6 +20,11 @@ if DEBUG:
 ```
 sudo systemctl status redis
 ```
+* остановить redis на машине
+```
+sudo systemctl stop redis
+```
+
 * указываем для Django тот backend, который используется в качестве кеш-системы
 ```python
 CACHES = {

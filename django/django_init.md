@@ -31,11 +31,11 @@ https://www.djangoproject.com/download/
 ```
 * установка Django
 ```
-pip install Django==4.2.4
+pip install Django==[version]
 ```
 * если нет файла зависимостей
 ```
-touch requirements.txt && pip freeze -> requirements.txt
+touch requirements.txt && pip freeze > requirements.txt
 ```
 * если уже есть файл с зависимостями
 ```

@@ -8,7 +8,7 @@ cd etc/apt && sudo nano sources.list
 ```
 * системный монитор в углу экрана
 ```
-sudo apt-get install indicator-multiload
+https://github.com/corecoding/Vitals
 ```
 * смена раскладки клавиатуры
 ```

@@ -17,3 +17,13 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt
 ```
 Open Settings > Keyboard > Keyboard Shortcuts (View and Customise Shortcuts) > Typing to confirm changes.
 ```
+* chrome
+```
+https://www.google.com/chrome/?platform=linux
+```
+```
+sudo dpkg -i [version].deb
+```
+```
+sudo apt --fix-broken install
+```

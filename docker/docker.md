@@ -21,7 +21,7 @@ docker -v
 ```
 * добавляем пользователя в группу Docker чтобы не писать sudo
 ```
-sudo usermod -aG docker [user_name] && reboot
+sudo usermod -aG docker [user_name]
 ```
 
 ### Работка с Docker

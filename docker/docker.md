@@ -21,7 +21,11 @@ docker -v
 ```
 * добавляем пользователя в группу Docker чтобы не писать sudo
 ```
-sudo usermod -aG docker [user_name]
+sudo groupadd docker && sudo usermod -aG docker $USER && newgrp docker
+```
+* перезагрузить сервер через кабинет или если локальная машина
+```
+reboot
 ```
 
 ### Работка с Docker

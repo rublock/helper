@@ -1,12 +1,12 @@
 ### Django REST Framework
 
-#####
+##### Базовое представление
 
 ```
 pip install djangorestframework
 ```
 * core/settings.py
-```
+```python
 
 INSTALLED_APPS = [
 	'rest_framework',
@@ -15,7 +15,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated", #only for auth users
     ],
 }
 ```
@@ -23,8 +23,9 @@ REST_FRAMEWORK = {
 python manage.py startapp mainapp_api
 ```
 * config/urls.py
-```
+```python
 path("api/", include("mainapp_api.urls")),
+path("api-auth/", include("rest_framework.urls")),
 ```
 * mainapp_api/
 ```
@@ -47,7 +48,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
 
 ```
-* общие представления на основе классов
+##### Общие представления на основе классов
 * https://www.django-rest-framework.org/api-guide/generic-views/
 * mainapp_api/views.py
 ```python
@@ -64,29 +65,56 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 ```
-* 
-```
+##### Pagination
+* mainapp_aip/views.py
+```python
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 10
 
+class PostList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    pagination_class = StandardResultsSetPagination #NEW
 ```
-* 
+##### Документация OpenAPI
 ```
+pip install drf-spectacular
+```
+```python
+INSTALLED_APPS = [
+    'drf_spectacular',
+]
 
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated"
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema', # new
+}
 ```
-* 
+* добавляем метаданные
+* core/settings.py
+```python
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API Project",
+    "DESCRIPTION": "A sample blog to learn about DRF",
+    "VERSION": "1.0.0",
+}
 ```
+```
+python manage.py spectacular --file schema.yml
+```
+* mainapp_api/urls.py
+```python
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
-```
-* 
-```
-
-```
-* 
-```
-
-```
-* 
-```
-
+urlpatterns = [
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    path("schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui")
+]
 ```
 * 
 ```

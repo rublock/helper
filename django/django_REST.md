@@ -20,11 +20,16 @@ REST_FRAMEWORK = {
 }
 ```
 ```
-python manage.py startapp mainapp_api
+python manage.py startapp api
+```
+```
+INSTALLED_APPS = [
+	'api',
+	]
 ```
 * config/urls.py
 ```python
-path("api/", include("mainapp_api.urls")),
+path("api/", include("api.urls")),
 path("api-auth/", include("rest_framework.urls")),
 ```
 * mainapp_api/
@@ -103,14 +108,19 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
 }
 ```
+* выгружаем данные в файл /app/schema.yml
 ```
 python manage.py spectacular --file schema.yml
 ```
 * mainapp_api/urls.py
 ```python
+from django.urls import path
+from .views import PostList, PostDetail
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 urlpatterns = [
+    path("", PostList.as_view(), name="post_list"),
+    path("<int:pk>/", PostDetail.as_view(), name="post_detail"),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     path("schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui")

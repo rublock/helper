@@ -22,7 +22,7 @@ REST_FRAMEWORK = {
 ```
 python manage.py startapp api
 ```
-```
+```python
 INSTALLED_APPS = [
 	'api',
 	]

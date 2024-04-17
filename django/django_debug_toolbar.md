@@ -6,10 +6,18 @@
 * config/settings.py
 ```python
 if DEBUG:
-	INTERNAL_IPS = [
-		"192.168.1.4",
-		"127.0.0.1",
-	]
+    INTERNAL_IPS = [
+        "192.168.1.4",
+        "127.0.0.1",
+    ]
+
+    def show_toolbar(request):
+        return True
+
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+    }
 ```
 ```python
 INSTALLED_APPS = [

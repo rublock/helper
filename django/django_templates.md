@@ -102,7 +102,7 @@ product_patterns = [
 ### Расширение шаблонов (блок content)
 * создаем базовый шаблон mainapp/templates/mainapp/base.html
 ```
-cd mainapp/templates/mainapp && touch base.html
+cd templates/mainapp && touch base.html
 ```
 ```
 <header>
@@ -110,7 +110,7 @@ cd mainapp/templates/mainapp && touch base.html
 {% block content %} {% endblock content %}
 ```
 ```
-cd mainapp/templates/mainapp && touch home_page.html
+cd templates/mainapp && touch home_page.html
 ```
 ```
 {% extends "base.html" %}
@@ -122,7 +122,7 @@ cd mainapp/templates/mainapp && touch home_page.html
 ```python
 TEMPLATES = [
     {
-        'DIRS': [os.path.join(BASE_DIR, 'mainapp/templates/mainapp'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/mainapp'),],
     }
 ```
 ### Работа с данными в шаблоне через Function Based View

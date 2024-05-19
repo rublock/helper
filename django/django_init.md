@@ -51,7 +51,7 @@ python -m django --version
 ```
 * инициализация проекта config - папка с настройками проекта
 ```
-django-admin startproject core .
+django-admin startproject config .
 ```
 * создаем Django приложение mainapp - имя приложения
 ```

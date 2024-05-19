@@ -121,6 +121,59 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
 ]
+---
+##### Найтсройка переменных окружения
+```
+touch sample.env
+```
+```
+touch .env
+```
+```
+pip install python-dotenv
+```
+* config/settings.py
+```python
+from dotenv import load_dotenv
+import os
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
+    )
+)
+```
+* sample.env
+```
+SECRET_KEY=""
+DEBUG=1
+ALLOWED_HOSTS=0.0.0.0,127.0.0.1
+```
+* 
+```
+
+```
+* 
+```
+
+```
+* 
+```
+
+```
+* 
+```
+
+```
+* 
+```
+
+```
 ```
 * чтобы создались все таблицы в том числе административные нужно провести миграции
 ```

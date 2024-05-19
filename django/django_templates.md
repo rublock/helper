@@ -1,6 +1,6 @@
 # Шаблоны Django
 ```
-cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && touch base.html
+mkdir templates
 ```
 * проверяем пусть к шаблонам
 * config/settings.py
@@ -8,12 +8,12 @@ cd mainapp && mkdir templates && cd templates && mkdir mainapp && cd mainapp && 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'mainapp/templates/mainapp'], # указываем путь к каталогу с шаблонами
+        'DIRS': [BASE_DIR / 'templates'], # указываем путь к каталогу с шаблонами
         # ...
     },
 ]
 ```
-* mainapp/templates/mainapp/base.html
+* templates/mainapp/base.html
 ```html
 <!DOCTYPE html>
 <html lang="en">

@@ -33,6 +33,12 @@ https://www.djangoproject.com/download/
 ```
 pip install Django==[version]
 ```
+```
+pip install black
+```
+```
+pip install isort
+```
 * если нет файла зависимостей
 ```
 touch requirements.txt && pip freeze > requirements.txt

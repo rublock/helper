@@ -13,25 +13,13 @@ sudo apt install python3-pip
 ```
 sudo pip install virtualenv && virtualenv venv && . venv/bin/activate
 ```
-* создаем .gitignore
-```
-wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
-```
-* добавляем лицензию
-```
-echo "MIT" > LICENSE
-```
-* создаем README.md
-```
-touch README.md
-```
 * смотрим актуальную версию Django
 ```
 https://www.djangoproject.com/download/
 ```
 * установка Django
 ```
-pip install Django==[version]
+pip install Django
 ```
 ```
 pip install black
@@ -41,15 +29,7 @@ pip install isort
 ```
 * если нет файла зависимостей
 ```
-touch requirements.txt && pip freeze > requirements.txt
-```
-* если уже есть файл с зависимостями
-```
-pip install -r requirements.txt
-```
-* указываем интерпритатор Python в IDE из нашей папки
-```
-venv/bin/python
+touch requirements.txt
 ```
 * проверка версии Django
 ```
@@ -63,17 +43,13 @@ django-admin startproject config .
 ```
 python manage.py startapp mainapp
 ```
-* добавляем разрешаем доступ с любого хоста
-```python
-ALLOWED_HOSTS = ['127.0.0.1']
-```
 * проверяем работу Django на локальной машине
 ```
-python manage.py runserver 127.0.0.1:8000
+python manage.py runserver
 ```
 * заливаем зависимости в файл
 ```
-pip freeze -> requirements.txt
+pip freeze > requirements.txt
 ```
 ---
 * asgi.py и wsgi.py - файлы для взаимодействия с сервером балансировщиком, требуются во время развертывания проекта на сервере

@@ -114,6 +114,8 @@ pip install python-dotenv
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))

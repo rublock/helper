@@ -191,9 +191,9 @@ hello world
 some_data
 ```
 ### Контекстные процессоры (данные для всех шаблонов сразу)
-- mainapp/context_processors/example.py
+- mainapp/context_processors/context.py
 ```python
-def simple_context_processor(request):
+def title(request):
 return {"foo": "bar"}
 ```
 - config/settings.py

@@ -190,6 +190,31 @@ hello world
 
 some_data
 ```
+### Контекстные процессоры (данные для всех шаблонов сразу)
+- mainapp/context_processors/example.py
+```python
+def simple_context_processor(request):
+return {"foo": "bar"}
+```
+- config/settings.py
+```python
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "mainapp.context_processors.context.title", #new
+            ],
+        },
+    },
+]
+```
 ### Циклы в шаблонах
 ```html
 <ul>

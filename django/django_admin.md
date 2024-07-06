@@ -13,7 +13,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 ```
-* далить суперпользователя
+* удалить суперпользователя
 ```python
 from django.contrib.auth import get_user_model
 model = get_user_model()

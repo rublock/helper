@@ -161,6 +161,8 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     price = models.IntegerField()
 ```
+![](https://github.com/rublock/helper/raw/main/django/img/django_ORM_one_to_many.png)
+
 * Конструктор типа models.ForeignKey в классе Product настраивает связь с главной сущностью.
 
 * Здесь первый параметр указывает, с какой моделью будет создаваться связь, - в нашем случае это модель Company

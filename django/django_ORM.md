@@ -150,22 +150,44 @@ print(user.name)
 ```
 
 ### one-to-many
-```
 
+* одна главная сущность может быть связаны с несколькими зависимыми сущностями
+```python
+class Company(models.Model):
+    name = models.CharField(max_length=30)
+ 
+class Product(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    price = models.IntegerField()
 ```
-* 
-```
+* Конструктор типа models.ForeignKey в классе Product настраивает связь с главной сущностью.
 
-```
-* 
-```
+* Здесь первый параметр указывает, с какой моделью будет создаваться связь, - в нашем случае это модель Company
 
+* Создадим компанию и присвоим ей 2 продукта
 ```
-* 
-```
+c = Company(name='Nestle')
+c.save()
 
+e = Product(company=c, name='Chocolate', price=100)
+e.save()
+
+e = Product(company=c, name='Dragees', price=200)
+e.save()
 ```
-* 
+```
+Product.objects.get(id=1).company.id
+# получим 1
+
+Product.objects.get(id=2).company.name
+# получим 'Nestle'
+```
+```
+Product.objects.filter(company__name='Nestle')
+# получим <QuerySet [<Product: Product object (1)>, <Product: Product object (2)>]>
+```
+Здесь нужно обратить особое внимание на выражение company__name. С помощью выражения модель__атрибут (обратите внимание: два подчеркивания!) можно использовать атрибут главной модели для фильтрации объектов (записей в таблице БД) зависимой модели.
 ```
 
 ```

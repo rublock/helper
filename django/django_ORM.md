@@ -1,5 +1,7 @@
 # Django ORM
 
+взято из <https://stepik.org/lesson/1146709/step/1?unit=1158607>
+
 * базовая структура модели
 ```python
 class Modelname(models.Model):
@@ -19,6 +21,7 @@ class Modelname(models.Model):
 ```python
 id = models.AutoField(primary_key=True)
 ```
+
 #### Манипуляция с данными в Django на основе CRUD 
 
 * открываем консоль
@@ -40,10 +43,10 @@ data.text
 ```
 * Чтение данных
 ```
-data = My_model.objects.get(id=1)
-data = My_model.objects.all()[5:10]
-data = My_model.objects.filter(id=1)
-data = My_model.objects.exclude(id=1)
+My_model.objects.get(id=1)
+My_model.objects.all()[5:10]
+My_model.objects.filter(id=1)
+My_model.objects.exclude(id=1)
 ```
 * Методы all(), filter() и exclude() возвращают объект QuerySet. Это, по сути, некое промежуточное хранилище, в котором содержится информация, полученная из БД.
 
@@ -73,9 +76,10 @@ My_model.objects.filter(id=1).delete()
 data = My_model.objects.all()
 print(data.query)
 ```
-#### Организация связей между таблицами
+# Организация связей между таблицами
 
-* один-к-одному
+#### one-to-one
+
 * Обычно связь «один-к-одному» легко моделируется в одной таблице.
 * В редких случаях связь «один-к-одному» моделируется с использованием двух таблиц. Такой вариант иногда необходим, чтобы преодолеть ограничения СУБД, или с целью увеличения производительности (производится, например, вынесение ключевого поля в отдельную таблицу для ускорения поиска по другой таблице).
 * Для создания отношения «один-к-одному» применяется тип связи models.OneToOneField()
@@ -144,7 +148,8 @@ print(f"login: {alexander_acc.login}, password: {alexander_acc.password}")
 user = User.objects.get(account__login="qwerty")
 print(user.name)
 ```
-* 
+
+#### one-to-many
 ```
 
 ```

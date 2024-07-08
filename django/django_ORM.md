@@ -210,18 +210,64 @@ class Student(models.Model):
 
 ![](https://github.com/rublock/helper/raw/main/django/img/django_ORM_many_to_many.png)
 
+```sql
+CREATE TABLE "manytomany_course" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(30) NOT NULL)
+CREATE TABLE "manytomany_student" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(30) NOT NULL)
+CREATE TABLE "manytomany_student_courses" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "student_id" bigint NOT NULL REFERENCES "manytomany_student" ("id") DEFERRABLE INITIALLY DEFERRED,
+    "course_id" bigint NOT NULL REFERENCES "manytomany_course" ("id") DEFERRABLE INITIALLY DEFERRED
+)
 ```
+```
+# создадим студента с именем Виктор
+stud_viktor = Student.objects.create(name="Виктор")
 
-```
-* 
-```
+# создадим один курс и добавим в него Виктора
+stud_viktor.courses.create(name="Django")
 
-```
-* 
-```
+# получим все курсы студента Виктора
+all_courses = Student.objects.get(name="Виктор").courses.all()
+# all_courses будет содержать <QuerySet [<Course: Course object (1)>]>
 
+# получаем всех студентов, которые посещают курс Django
+all_student = Student.objects.filter(courses__name="Django")
+# all_student будет содержать <QuerySet [<Student: Student object (1)>]>
 ```
-* 
+* Стоит обратить внимание на последнюю строку кода, где производится выборка студентов по посещаемому курсу. Для передачи в метод filter() имени курса используется параметр, название которого начинается с названия атрибута, через которое идет связь со второй моделью Courses. И далее через два знака подчеркивания указывается имя атрибута второй модели - например, courses__name или courses__id.
+
+Иными словами, мы можем получить информацию о курсах студента через атрибут courses, которое определено в модели Student. Однако имеется возможность получать информацию и о студентах, которые изучают определенные курсы. В этом случае надо использовать синтаксис _set
+```
+# создадим курс программирования на Python
+kurs_python = Course.objects.create(name="Python")
+
+# создаем студента и добавляем его на курс
+kurs_python.student_set.create(name="Bиктop")
+
+# отдельно создаем студента и добавляем его на курс
+alex = Student(name="Aлeкcaндp")
+alex.save()
+kurs_python.student_set.add(alex)
+
+# получим всех студентов курса
+students = kurs_python.student_set.all()
+# students будет содержать <QuerySet [<Student: Student object (2)>, <Student: Student object (3)>]>
+
+# получим количество студентов по курсу
+number = kurs_python.student_set.count()
+# number будет содержать 2
+
+# удаляем с курса одного студента
+kurs_python.student_set.remove(alex)
+
+# удаляем всех студентов с курса
+kurs_python.student_set.clear()
+
+# получим количество студентов по курсу
+number = kurs_python.student_set.count()
+# number будет содержать 0
+```
+* Если нам надо в промежуточной таблице хранить еще какие-либо данные - например, дату зачисления студента на курс, его оценки и т. д., то такая конфигурация не подойдет. И тогда правильнее будет создать промежуточную сущность вручную (например, запрос или хранимую процедуру), которая связана отношением «один-ко-многим» с обеими моделями.
 ```
 
 ```

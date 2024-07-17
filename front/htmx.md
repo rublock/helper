@@ -1,4 +1,10 @@
 * HTMX to display an alert with the server response
+* добавление htmx к проекту
+```html
+<script src="https://unpkg.com/htmx.org@1.9.12"
+        integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous">
+</script>
+```
 ```html
 <!DOCTYPE html>
 <html>

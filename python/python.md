@@ -1,5 +1,12 @@
 ### Python
 
+конструкция if __name__ == __main__
+предотвращает выполнения кода при импорте
+помогает лучше организовать код
+
+![](https://github.com/rublock/helper/raw/main/python/img/name_main.PNG)
+
+
 срез срезает :7 не включительно
 ```
 print(s[2:7])

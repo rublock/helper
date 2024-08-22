@@ -1,5 +1,10 @@
 ### Python
 
+срез срезает 7 не включительно
+```
+print(s[2:7])
+```
+
 ![](https://github.com/rublock/helper/raw/main/python/img/srez.PNG)
 
 #### Зарезервированные операторы

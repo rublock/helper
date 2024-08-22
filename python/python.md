@@ -1,6 +1,6 @@
 ### Python
 
-![](https://github.com/rublock/helper/raw/main/python/img/srez.png)
+![](https://github.com/rublock/helper/raw/main/python/img/srez.PNG)
 
 #### Зарезервированные операторы
 ```

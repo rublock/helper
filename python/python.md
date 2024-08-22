@@ -1,5 +1,7 @@
 ### Python
 
+![](https://github.com/rublock/helper/raw/main/python/img/srez.png)
+
 #### Зарезервированные операторы
 ```
 False;

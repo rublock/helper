@@ -4,7 +4,7 @@
 предотвращает выполнения кода при импорте
 помогает лучше организовать код
 
-![](https://github.com/rublock/helper/raw/main/python/img/name_main.PNG)
+![](https://github.com/rublock/helper/raw/main/python/img/name_main.png)
 
 
 срез срезает :7 не включительно

@@ -7,7 +7,7 @@
 ![](https://github.com/rublock/helper/raw/main/python/img/name_main.png)
 
 
-срез срезает :7 не включительно
+срез срезает :7 невключительно, тоже самое для списков (list)
 ```
 print(s[2:7])
 ```

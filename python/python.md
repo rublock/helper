@@ -8,6 +8,8 @@
 3. or
 ```
 
+![](https://github.com/rublock/helper/raw/main/python/img/and_or_not.png)
+
 конструкция if __name__ == __main__
 предотвращает выполнения кода при импорте
 помогает лучше организовать код
